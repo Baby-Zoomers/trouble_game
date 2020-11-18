@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+
+var currentAvailablePieces = [];
+var currentSuggestionPieces = [];
+var selectedPieceId = null;
+var colorToUpdate = null;
  
 class Board extends Component {
    render() {
     return (
-<svg id="SVGRoot" width="800px" height="800px" version="1.1" viewBox="0 0 800 800">
+<svg id="SVGRoot" width="800px" height="800px" version="1.1" viewBox="0 0 800 800"> 
   <g id="layer1">
     <rect id="rect36" x="50" y="50" width="700" height="700" fill="#fff" fillRule="evenodd" stroke="#000" strokeWidth="2"/>
     <circle id="path912-2" cx="400" cy="400" r="314.03" fill="none" opacity=".998" stroke="#d0e0f2" strokeWidth="50"/>
@@ -338,10 +343,19 @@ class Board extends Component {
         <ellipse id="ellipse3523" class="suggestion_ring" cx="85.97" cy="400" rx="19.134" ry="19.134" display="none" opacity=".998" stroke="#ff9800" strokeWidth="6.7323"/>
       </g>
     </g>
-    <g id="use3307" transform="rotate(180 399.37 398.02)">
-      <g id="space35" transform="rotate(45 -159.91 494.08)">
-        <circle id="circle3461" class="unoccupied_ring" cx="85.97" cy="400" r="12.632" opacity=".998" stroke="#000" strokeWidth="14.737"/>
-        <ellipse id="ellipse3463" class="occupied_ring" cx="85.97" cy="400" rx="14.211" ry="14.211" display="none" opacity=".998" stroke="#fffc7d" strokeWidth="16.579"/>
+    <g id="use3307" transform="rotate(180 399.37 398.02)" >
+      <g id="space35" transform="rotate(45 -159.91 494.08)" onClick = {function(){
+      var pieceName = "space35";
+      var pieceOnBoard = document.getElementById(pieceName);
+      var unoccupiedPart = pieceOnBoard.getElementsByClassName("unoccupied_ring")[0];
+      var occupiedPart = pieceOnBoard.getElementsByClassName("occupied_ring")[0];
+      occupiedPart.style.opacity = 0.500;
+      
+      //onClick = {function(){var element = document.getElementById("ellipse3463");element.style.display = "block";}}/>
+    }}>
+        <circle id="circle3461" class="unoccupied_ring" cx="85.97" cy="400" r="12.632" opacity=".998" stroke="#000" strokeWidth="14.737" />
+        
+        <ellipse id="ellipse3463" class="occupied_ring" cx="85.97" cy="400" rx="14.211" ry="14.211" display="block" opacity=".998" stroke="#fffc7d" strokeWidth="16.579"/>
         <ellipse id="ellipse3465" class="suggestion_ring" cx="85.97" cy="400" rx="19.134" ry="19.134" display="none" opacity=".998" stroke="#ff9800" strokeWidth="6.7323"/>
       </g>
       <g id="space34" transform="rotate(45 -186.8 559)">
@@ -398,6 +412,83 @@ class Board extends Component {
 </svg>
     );
   }
+}
+
+function updateAllAvailablePieces(availablePieces){
+  // call the backend for available pieces
+  // Input: Array of availablePieces
+  // Outcome: Highlight all available pieces
+  availablePieces.forEach(pieceId => {
+    var pieceName = "space" + pieceId.toString();
+    var pieceOnBoard = document.getElementById(pieceName);
+    var occupiedPart = pieceOnBoard.getElementsByClassName("occupied_ring")[0];
+    occupiedPart.style.opacity = 0.500;
+  });
+  currentAvailablePieces = availablePieces; 
+}
+
+function updateAllSuggestionPieces(suggestionPieces){
+  // call the backend for suggestion pieces
+  // Input: Array of suggestion Pieces
+  // Outcome: Show suggestion rings for suggestion pieces
+  suggestionPieces.forEach(pieceId =>{
+    var pieceName = "space" + pieceId.toString();
+    var pieceOnBoard = document.getElementById(pieceName);
+    var suggestiondPart = pieceOnBoard.getElementsByClassName("suggestion_ring")[0];
+    suggestiondPart.display = "block";
+  });
+  currentSuggestionPieces = suggestionPieces;
+}
+
+function pieceClickHandler(currentPieceId){
+  // Input: pieceid
+  if(currentAvailablePieces.length === 0){
+    if(selectedPieceId !== null){
+      // Select the piece to move. 
+      if(currentSuggestionPieces.length === 0){
+        // No place to move
+        alert("You have no way to turn. Waste a chance");
+      }
+      else{
+        // Update the currentPiece to occuplied and all other suggestion piece to non_occupied
+        var flag = currentSuggestionPieces.find(pieceId => pieceId === currentPieceId);
+        if( flag !== undefined){
+          currentSuggestionPieces.forEach(pieceId =>{
+            var pieceName = "space" + pieceId.toString();
+            var pieceOnBoard = document.getElementById(pieceName);
+            var suggestiondPart = pieceOnBoard.getElementsByClassName("suggestion_ring")[0];
+            suggestiondPart.setAttribute("display","none");
+            if(pieceId === currentPieceId){
+              var occupiedPart =  pieceOnBoard.getElementsByClassName("occupied_ring")[0];
+              occupiedPart.setAttribute("stroke",colorToUpdate);
+            }
+          });
+          // Todo: Send the request to the backend to see whether he/she wins
+        }
+      }
+    }
+  }
+  else{
+    // Update the currentPiece to unoccupied. Set the other pieces as before
+    var flag = currentAvailablePieces.find(pieceId => pieceId === currentPieceId);
+    if(flag !== undefined){
+    currentAvailablePieces.forEach(pieceId =>{
+      var pieceName = "space" + pieceId.toString();
+      var pieceOnBoard = document.getElementById(pieceName);
+      var occupiedPart = pieceOnBoard.getElementsByClassName("occupied_ring")[0];
+      if(currentPieceId === pieceId){
+        occupiedPart.setAttribute("stroke","#000");
+        selectedPieceId = currentPieceId;
+        colorToUpdate = occupiedPart.getAttribute("stroke");
+      }
+      else{
+        occupiedPart.style.opacity = .998;
+      }
+    });
+    currentAvailablePieces = [];
+     // Todo: Send selectedPieceId to the backend
+  }
+}
 }
 
 export default Board;
