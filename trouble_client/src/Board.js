@@ -467,6 +467,7 @@ function pieceClickHandler(currentPieceId){
         }
       }
     }
+    
   }
   else{
     // Update the currentPiece to unoccupied. Set the other pieces as before
