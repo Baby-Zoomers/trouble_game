@@ -17,8 +17,8 @@ class Board {
     /**
      * Check if a valid move on board
      * @param {Piece} piece - piece object
-     * @param {int} steps - steps need to move
-     * @return {bool} - the validity of the move
+     * @param {number} steps - steps need to move
+     * @return {boolean} - the validity of the move
      */
 
     isValidMove = function(piece, steps) {
@@ -28,7 +28,7 @@ class Board {
      /**
      * Update the move on board
      * @param {Piece} piece - piece object
-     * @param {int} steps - steps need to move
+     * @param {number} steps - steps need to move
      */
     updateMoves = function(piece, steps) {
         

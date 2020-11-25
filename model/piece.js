@@ -4,10 +4,9 @@
  * Represents a piece
  * @constructor
  * @param {string} color - color of the piece
- * @param {int} index - index of the piece
- * @param {int} position - initial postion of the piece at the home space
- * @param {init} start - start postion for this color
- * @
+ * @param {number} index - index of the piece
+ * @param {number} position - initial postion of the piece at the home space
+ * @param {number} start - start postion for this color
  * 
  */
 
@@ -24,7 +23,7 @@ class Piece {
     
     /**
      * Move the piece
-     * @param {int} steps - steps need to be moved, move(-1) means send back to homebase
+     * @param {number} steps - steps need to be moved, move(-1) means send back to homebase
      */
     
     move = function (steps) {

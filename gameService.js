@@ -2,6 +2,12 @@ const database = require('./model/database')
 const pieces = require('./model/piece')
 let Piece = pieces.Piece
 
+/**
+ * Represents a palyer data transfer object
+ * @constructor
+ * @param {string} name - user name
+ * @param {string} color - user color
+ */
 class playerDTO {
     constructor (name, color) {
         this.name = name
@@ -9,6 +15,12 @@ class playerDTO {
     } 
 }
 
+
+/**
+ * Handle the dice rolling event
+ * @param {number} gameID - the gameID of current game
+ * @returns {number} the result of rolling dice 
+ */
 const handleDiceRoll = (gameID) => {
     let currentGame = database.gameList[gameID]
     let rollResult = currentGame.rollDice()
@@ -16,7 +28,12 @@ const handleDiceRoll = (gameID) => {
     return rollResult
 }
 
-
+/**
+ * Handle the piece moving event
+ * @param {number} gameID - the gameID of current game
+ * @param {Piece} piece - the piece which is selected to be moved
+ * @return {palyerDTO} - the player for next turn
+ */
 const handleMovePiece = (gameID, piece) => {
     let currentGame = database.gameList[gameID]
     currentGame.movePiece(piece)
@@ -29,6 +46,11 @@ const handleMovePiece = (gameID, piece) => {
     return currentPlayerDTO
 }
 
+/**
+ * Handle the game joining event
+ * @param {playerDTO} player 
+ * @param {number} gameID 
+ */
 const handlejoinGame = (player, gameID) => {
     let currentGame = database.gameList[gameID]
     name = player.name

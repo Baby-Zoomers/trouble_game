@@ -79,7 +79,7 @@ class Game {
     }
 
     /** Roll the dice
-     * @return {int} randomly output 1 - 6
+     * @return {number} randomly output 1 - 6
      */
     rollDice = function () {
         this.dice = Math.floor(Math.random() * 6) + 1
@@ -88,7 +88,7 @@ class Game {
     }
 
     /** get all the avilable piece for the current user
-     * @return {[Piece]} array of available 
+     * @return {Piece[]} array of available 
      */
     getAvailablePieces = function () {
         const availablablePieces = this.userList[this.currentUser].pieces.forEach(piece => {
