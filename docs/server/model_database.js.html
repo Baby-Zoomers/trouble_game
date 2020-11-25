@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: model/database.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,41 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: model/database.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const game = require('./game')
+let Game = game.Game
 
-
-    <h3> </h3>
-
-
-
-
-
-
-
+var gameList = new Array()
+var playerList = new Array()
 
 
 
-    
+/**
+ * Hardcode a gamelist
+ */
 
-
-
-
-
+const testGame = new Game(0)
+testGame.addUser('Jordan', 'blue')
+testGame.addUser('Sam', 'yellow')
+testGame.addUser('Sim', 'red')
+testGame.addUser('Yiwei', 'green')
+gameList.push(testGame)
+module.exports = {
+    //property name: function name
+    gameList: gameList,
+    playerList: playerList
+}
+</code></pre>
+        </article>
+    </section>
 
 
 
