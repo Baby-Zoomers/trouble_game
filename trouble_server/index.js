@@ -53,3 +53,5 @@ const port = process.env.PORT || 5000;
 server.listen(port, function(){
   console.log('Trouble API listening on *:' + port);
 });
+
+module.exports = server;
