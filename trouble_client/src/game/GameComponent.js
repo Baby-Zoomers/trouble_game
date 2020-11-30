@@ -12,14 +12,10 @@ class GameComponent extends Component {
     render() {
         return (
             <SocketProvider>
-                <TurnContainer>
-                    <DiceContainer>
-                        <BoardContainer></BoardContainer>
-                    </DiceContainer>
-                    <CompletionContainer>
-                        <CompletionWindow></CompletionWindow>
-                    </CompletionContainer>
-                </TurnContainer>
+                <TurnContainer></TurnContainer>
+                <BoardContainer></BoardContainer>
+                <DiceContainer></DiceContainer>
+                <CompletionContainer></CompletionContainer>
             </SocketProvider>
         )}
 }

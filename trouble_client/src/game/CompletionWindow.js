@@ -10,12 +10,7 @@ class CompletionWindow extends Component {
   
     render() {
         return (
-        
-      
-
-        
           <div bg-color="red">{this.context.completedPlayer.name} Won!</div>
-      
         );
     }
 }
