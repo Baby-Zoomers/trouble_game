@@ -8,7 +8,7 @@
     "start": "node index.js",
     "doc-server": "jsdoc -d ../docs/server --configure jsdoc.server.conf",
     "doc-client": "jsdoc -d ../docs/client --configure jsdoc.client.conf",
-    "heroku-postbuild": "cd trouble_client && npm install && npm run build"
+    "heroku-postbuild": "cd ../trouble_client && npm install && npm run build"
   },
   "repository": {
     "type": "git",
