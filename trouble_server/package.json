@@ -1,34 +1,13 @@
 {
-  "name": "trouble_game",
-  "version": "1.0.0",
-  "description": "Trouble Board Game for CSE 210 at UCSD",
+  "name": "trouble_server",
+  "description": "Backend server for trouble board game.",
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "node index.js",
-    "doc-server": "jsdoc -d ../docs/server --configure jsdoc.server.conf",
-    "doc-client": "jsdoc -d ../docs/client --configure jsdoc.client.conf",
-    "heroku-postbuild": "cd ../trouble_client && npm install && npm run build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Baby-Zoomers/trouble_game.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Baby-Zoomers/trouble_game/issues"
-  },
-  "homepage": "https://github.com/Baby-Zoomers/trouble_game#readme",
-  "dependencies": {
-    "express": "^4.17.1",
-    "socket.io": "^3.0.3"
+    "start": "node index.js"
   },
   "devDependencies": {
     "jest": "^26.6.3",
-    "jsdoc": "^3.6.6",
-    "jsdoc-http-plugin": "^0.3.2",
     "rewire": "^5.0.0",
     "supertest": "^6.0.1"
   },

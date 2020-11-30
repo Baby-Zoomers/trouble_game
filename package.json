@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node trouble_server/index.js",
     "postinstall": "cd trouble_server && npm install",
-    "doc-server": "jsdoc -d docs/server --configure trouble_server/jsdoc.server.conf",
-    "doc-client": "jsdoc -d docs/client --configure trouble_client/jsdoc.client.conf",
+    "doc-server": "jsdoc -d docs/server --configure jsdoc.server.conf",
+    "doc-client": "jsdoc -d docs/client --configure jsdoc.client.conf",
     "heroku-postbuild": "cd trouble_client && npm install && npm run build"
   },
   "repository": {
@@ -20,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/Baby-Zoomers/trouble_game/issues"
   },
-  "homepage": "https://github.com/Baby-Zoomers/trouble_game#readme"
+  "homepage": "https://github.com/Baby-Zoomers/trouble_game#readme",
+  "dependencies": {
+    "jsdoc": "^3.6.6",
+    "jsdoc-http-plugin": "^0.3.2"
+  }
 }

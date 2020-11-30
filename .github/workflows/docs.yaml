@@ -13,15 +13,12 @@ jobs:
             - uses: actions/setup-node@v1
 
             - name: Install jsdoc
-              working-directory: ./trouble_server
               run: npm install
 
             - name: Generate Server Documentation
-              working-directory: ./trouble_server
               run: npm run doc-server
 
             - name: Generate Client Documentation
-              working-directory: ./trouble_server
               run: npm run doc-client
               
             - name: Add Commit
