@@ -14,7 +14,7 @@ class CompletionWindow extends Component {
       
 
         
-          <div bg-color="red">{this.context.completedPlayer} Won!</div>
+          <div bg-color="red">{this.context.completedPlayer.name} Won!</div>
       
         );
     }

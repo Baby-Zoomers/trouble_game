@@ -11,8 +11,8 @@ class TurnContainer extends Component {
 
     render() {
         return (<div>
-            {this.props.children}
             <TurnStatusIndicator player={this.state.currentPlayer}></TurnStatusIndicator>
+            {this.props.children}
         </div>)
       }
 }
