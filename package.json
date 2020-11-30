@@ -4,7 +4,7 @@
   "description": "Trouble Board Game for CSE 210 at UCSD",
   "main": "trouble_server/index.js",
   "scripts": {
-    "postinstall": "cd trouble_server && npm install"
+    "postinstall": "cd trouble_server && npm install",
     "doc-server": "jsdoc -d docs/server --configure trouble_server/jsdoc.server.conf",
     "doc-client": "jsdoc -d docs/client --configure trouble_client/jsdoc.client.conf",
     "heroku-postbuild": "cd trouble_client && npm install && npm run build"
