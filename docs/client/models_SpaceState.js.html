@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: game/socket_context/sockets/emit.js</title>
+    <title>JSDoc: Source: models/SpaceState.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: game/socket_context/sockets/emit.js</h1>
+    <h1 class="page-title">Source: models/SpaceState.js</h1>
 
     
 
@@ -26,21 +26,24 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { socket } from "./index";
-
-/**
- * @summary methods that can be imported and used in any component
+            <pre class="prettyprint source linenums"><code>/** Simple class for representing the state of a board space. 
+ * Used primarily by Board.js
  */
+class SpaceState {
+    /**
+     * 
+     * @param {boolean} occupied True if space is occupied by a piece
+     * @param {string} color Color to render the occupied space
+     * @param {boolean} highlighted if the space is highlighted 
+     */
+    constructor(occupied, color, highlighted){
+        this.occupied = occupied;
+        this.color = color;
+        this.highlighted = highlighted;
+    }   
+}
 
-export const sendRollDice = () => {
-  socket.emit('rollDice');
-    // socket.
-};
-
-export const movePiece = (piece) => {
-  socket.emit('movePiece', piece);
-};
-</code></pre>
+export default SpaceState;</code></pre>
         </article>
     </section>
 

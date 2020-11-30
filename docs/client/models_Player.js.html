@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: game/socket_context/sockets/emit.js</title>
+    <title>JSDoc: Source: models/Player.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: game/socket_context/sockets/emit.js</h1>
+    <h1 class="page-title">Source: models/Player.js</h1>
 
     
 
@@ -26,21 +26,21 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { socket } from "./index";
+            <pre class="prettyprint source linenums"><code>
+/** Represents a player in the game. */
+class Player{
+    /**
+     * Returns a new player object
+     * @param {string} Display name 
+     * @param {string} Player's color. Should be one of Colors.PlayerColors
+     */
+    constructor(name, color){
+        this.name = name;
+        this.color = color;
+    }
+}
 
-/**
- * @summary methods that can be imported and used in any component
- */
-
-export const sendRollDice = () => {
-  socket.emit('rollDice');
-    // socket.
-};
-
-export const movePiece = (piece) => {
-  socket.emit('movePiece', piece);
-};
-</code></pre>
+export default Player;</code></pre>
         </article>
     </section>
 
