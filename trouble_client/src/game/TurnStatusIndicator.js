@@ -18,9 +18,7 @@ class TurnStatusIndicator extends Component {
     }
 
     return (
-      <header>
-      <div><span className="badge px-3 py-2" style={style}>{player.name}'s turn </span></div>
-      </header>
+      <span className="badge px-3 py-2" style={style}>{player.name}'s turn </span>
     );
   }
 }

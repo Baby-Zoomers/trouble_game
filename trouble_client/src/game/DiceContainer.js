@@ -12,7 +12,7 @@ class DiceContainer extends Component {
 
   render() {
         return (
-        <div>
+        <div className={"container-div " + this.props.className}>
           <DiceWindow roll={this.state.diceRoll} handleDiceClick={this.rollDice}></DiceWindow>
           {this.props.children}
         </div>);
