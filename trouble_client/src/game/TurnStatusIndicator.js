@@ -1,8 +1,6 @@
 import { Component } from 'react';
 import SocketContext from './socket_context/context';
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/esm/Button';
-import { getPlayerColorDark, getPlayerColorLight } from '../Colors';
+import { getPlayerColorDark } from '../Colors';
 
 
 
