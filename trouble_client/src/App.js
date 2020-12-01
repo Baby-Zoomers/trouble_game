@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import GameComponent from './game/GameComponent';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 /** Main React App component
