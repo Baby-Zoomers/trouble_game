@@ -21,7 +21,14 @@ jobs:
             - name: Generate Client Documentation
               run: npm run doc-client
               
-            - uses: actions/upload-artifact@v2
+            - name: Upload Client Docs
+              uses: actions/upload-artifact@v2
               with:
-                name: trouble-docs
-                path: docs/ 
+                name: trouble-client-docs
+                path: docs/client/ 
+              
+            - name: Upload Server Docs
+              uses: actions/upload-artifact@v2
+              with:
+                name: trouble-server-docs
+                path: docs/stuff/ 
