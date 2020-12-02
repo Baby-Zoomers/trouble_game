@@ -23,3 +23,31 @@ export const PlayerColors = {
     blue: TroubleColors.blueLight,
     green: TroubleColors.greenLight,
 }
+
+/**
+ * Return the dark variant of a player color
+ * @param {string} one of [PlayerColors.red, PlayerColors.blue, PlayerColors.green, PlayerColors.yellow] 
+ */
+export function getPlayerColorDark(color){
+    switch(color){
+        case PlayerColors.red: return TroubleColors.redDark;
+        case PlayerColors.yellow: return TroubleColors.yellowDark;
+        case PlayerColors.blue: return TroubleColors.blueDark;
+        case PlayerColors.green: return TroubleColors.greenDark;
+        default: return '#FFFFFF';
+    }
+}
+
+/**
+ * Return the midtone variant of a player color
+ * @param {string} one of [PlayerColors.red, PlayerColors.blue, PlayerColors.green, PlayerColors.yellow] 
+ */
+export function getPlayerColorMidtone(color){
+    switch(color){
+        case PlayerColors.red: return TroubleColors.red;
+        case PlayerColors.yellow: return TroubleColors.yellow;
+        case PlayerColors.blue: return TroubleColors.blue;
+        case PlayerColors.green: return TroubleColors.green;
+        default: return '#FFFFFF';
+    }
+}

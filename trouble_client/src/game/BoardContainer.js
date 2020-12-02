@@ -10,7 +10,7 @@ class BoardContainer extends Component {
 
     render() {
         return (
-          <div>
+          <div className={"container-div " + this.props.className}>
             {this.props.children}
             <Board boardState={this.state.board}></Board>
           </div>)

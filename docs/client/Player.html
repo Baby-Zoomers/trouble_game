@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: SpaceState</title>
+    <title>JSDoc: Class: Player</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: SpaceState</h1>
+    <h1 class="page-title">Class: Player</h1>
 
     
 
@@ -28,10 +28,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>SpaceState<span class="signature">(occupied, color, highlighted)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>Player<span class="signature">(Display, Player's)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">Simple class for representing the state of a board space. 
-Used primarily by Board.js</div>
+            <div class="class-description">Represents a player in the game.</div>
         
     
 </header>
@@ -46,12 +45,16 @@ Used primarily by Board.js</div>
     
 
     
-    <h4 class="name" id="SpaceState"><span class="type-signature"></span>new SpaceState<span class="signature">(occupied, color, highlighted)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Player"><span class="type-signature"></span>new Player<span class="signature">(Display, Player's)</span><span class="type-signature"></span></h4>
     
 
     
 
 
+
+<div class="description">
+    Returns a new player object
+</div>
 
 
 
@@ -86,30 +89,7 @@ Used primarily by Board.js</div>
 
         <tr>
             
-                <td class="name"><code>occupied</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">True if space is occupied by a piece</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>color</code></td>
+                <td class="name"><code>Display</code></td>
             
 
             <td class="type">
@@ -125,20 +105,20 @@ Used primarily by Board.js</div>
 
             
 
-            <td class="description last">Color to render the occupied space</td>
+            <td class="description last">name</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>highlighted</code></td>
+                <td class="name"><code>Player's</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">boolean</span>
+<span class="param-type">string</span>
 
 
             
@@ -148,7 +128,7 @@ Used primarily by Board.js</div>
 
             
 
-            <td class="description last">if the space is highlighted</td>
+            <td class="description last">color. Should be one of Colors.PlayerColors</td>
         </tr>
 
     
@@ -189,7 +169,7 @@ Used primarily by Board.js</div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_SpaceState.js.html">models/SpaceState.js</a>, <a href="models_SpaceState.js.html#line4">line 4</a>
+        <a href="models_Player.js.html">models/Player.js</a>, <a href="models_Player.js.html#line3">line 3</a>
     </li></ul></dd>
     
 

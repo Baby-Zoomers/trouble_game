@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: game/CompletionWindow.js</title>
+    <title>JSDoc: Source: models/Player.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: game/CompletionWindow.js</h1>
+    <h1 class="page-title">Source: models/Player.js</h1>
 
     
 
@@ -26,22 +26,21 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { Component } from 'react';
-import SocketContext from './socket_context/context';
-
-/** UI component to show that a user has completed the board (win if user, loss if other player)*/
-class CompletionWindow extends Component {
-  
-  static contextType = SocketContext;
-  
-    render() {
-        return (
-          &lt;div bg-color="red">{this.context.completedPlayer.name} Won!&lt;/div>
-        );
+            <pre class="prettyprint source linenums"><code>
+/** Represents a player in the game. */
+class Player{
+    /**
+     * Returns a new player object
+     * @param {string} Display name 
+     * @param {string} Player's color. Should be one of Colors.PlayerColors
+     */
+    constructor(name, color){
+        this.name = name;
+        this.color = color;
     }
 }
 
-export default CompletionWindow;</code></pre>
+export default Player;</code></pre>
         </article>
     </section>
 
