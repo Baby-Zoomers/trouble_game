@@ -18,7 +18,6 @@ class GameRoom {
 
     setDiceEvent() {
         this.socket.on('rollDice', () => {
-            console.log("rolling reuslt: 1");
             this.socket.emit('rollResult', GameService.handleDiceRoll(this.gameId));
         });
     }
