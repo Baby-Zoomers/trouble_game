@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: DiceWindow</title>
+    <title>JSDoc: Source: models/Piece.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,137 +17,42 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: DiceWindow</h1>
+    <h1 class="page-title">Source: models/Piece.js</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>DiceWindow<span class="signature">()</span><span class="type-signature"></span></h2>
-        
-            <div class="class-description">UI component to prompt the user to roll the dice and then show the result</div>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-
-    
-    <h2>Constructor</h2>
-    
-
-    
-    <h4 class="name" id="DiceWindow"><span class="type-signature"></span>new DiceWindow<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="game_DiceWindow.js.html">game/DiceWindow.js</a>, <a href="game_DiceWindow.js.html#line6">line 6</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import Player from "./Player";
+
+/** Represents a piece/pawn in the game. */
+class Piece{
+    /**
+     * Returns a new piece object
+     * @param {Player} player: player the piece belongs to
+     * @param {int} space: Number of the space the piece is on
+     */
+    constructor(player, space){
+        this.player = player;
+        this.space = space;
+    }
+
+    /**
+     * Create a piece object from a PiceDTO
+     * @param {Object} pieceDTO: Piece DTO received from the server
+     * @returns {Piece} new Piece object
+     */
+    static fromDTO(pieceDTO) {
+        return new Piece(Player.fromDTO(pieceDTO.player), pieceDTO.space);
+    }
+}
+
+export default Piece;</code></pre>
+        </article>
+    </section>
 
 
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: SpaceState</title>
+    <title>JSDoc: Class: Piece</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: SpaceState</h1>
+    <h1 class="page-title">Class: Piece</h1>
 
     
 
@@ -28,10 +28,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>SpaceState<span class="signature">(occupied, color, highlighted)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>Piece<span class="signature">(player:, space:)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">Simple class for representing the state of a board space. 
-Used primarily by Board.js</div>
+            <div class="class-description">Represents a piece/pawn in the game.</div>
         
     
 </header>
@@ -46,12 +45,16 @@ Used primarily by Board.js</div>
     
 
     
-    <h4 class="name" id="SpaceState"><span class="type-signature"></span>new SpaceState<span class="signature">(occupied, color, highlighted)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Piece"><span class="type-signature"></span>new Piece<span class="signature">(player:, space:)</span><span class="type-signature"></span></h4>
     
 
     
 
 
+
+<div class="description">
+    Returns a new piece object
+</div>
 
 
 
@@ -86,13 +89,13 @@ Used primarily by Board.js</div>
 
         <tr>
             
-                <td class="name"><code>occupied</code></td>
+                <td class="name"><code>player:</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">boolean</span>
+<span class="param-type"><a href="Player.html">Player</a></span>
 
 
             
@@ -102,20 +105,20 @@ Used primarily by Board.js</div>
 
             
 
-            <td class="description last">True if space is occupied by a piece</td>
+            <td class="description last">player the piece belongs to</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>color</code></td>
+                <td class="name"><code>space:</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">int</span>
 
 
             
@@ -125,30 +128,7 @@ Used primarily by Board.js</div>
 
             
 
-            <td class="description last">Color to render the occupied space</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>highlighted</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">if the space is highlighted</td>
+            <td class="description last">Number of the space the piece is on</td>
         </tr>
 
     
@@ -189,7 +169,7 @@ Used primarily by Board.js</div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_SpaceState.js.html">models/SpaceState.js</a>, <a href="models_SpaceState.js.html#line4">line 4</a>
+        <a href="models_Piece.js.html">models/Piece.js</a>, <a href="models_Piece.js.html#line4">line 4</a>
     </li></ul></dd>
     
 
@@ -236,6 +216,169 @@ Used primarily by Board.js</div>
 
     
 
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".fromDTO"><span class="type-signature">(static) </span>fromDTO<span class="signature">(pieceDTO:)</span><span class="type-signature"> &rarr; {<a href="Piece.html">Piece</a>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Create a piece object from a PiceDTO
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>pieceDTO:</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Piece DTO received from the server</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_Piece.js.html">models/Piece.js</a>, <a href="models_Piece.js.html#line20">line 20</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    new Piece object
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Piece.html">Piece</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
     
 
     
