@@ -26,9 +26,11 @@ jobs:
               with:
                 name: trouble-client-docs
                 path: docs/client/ 
+                if-no-files-found: error    # Flag an error if docs were not generated
               
             - name: Upload Server Docs
               uses: actions/upload-artifact@v2
               with:
                 name: trouble-server-docs
                 path: docs/stuff/ 
+                if-no-files-found: error    # Flag an error if docs were not generated
