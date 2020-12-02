@@ -1,3 +1,4 @@
+import { updateBoardState } from '../../BoardContainer';
 import { socket } from './index';
 
 /**
@@ -17,7 +18,9 @@ export const socketEvents = ({ setValue }) => {
     setValue(state => { return { ...state, completedPlayer }});
   });
 
-  socket.on('boardState', ({boardState}) => {
+  socket.on('newMove', (newMoveMsg) => {
+    console.log(newMoveMsg)
+    const boardState = updateBoardState(newMoveMsg.board)
     setValue(state => { return { ...state, boardState }});
   });
 
