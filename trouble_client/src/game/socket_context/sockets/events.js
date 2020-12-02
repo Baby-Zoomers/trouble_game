@@ -1,3 +1,4 @@
+import Piece from '../../../models/Piece';
 import { updateBoardState } from '../../BoardContainer';
 import { socket } from './index';
 
@@ -19,8 +20,9 @@ export const socketEvents = ({ setValue }) => {
   });
 
   socket.on('newMove', (newMoveMsg) => {
-    console.log(newMoveMsg)
-    const boardState = updateBoardState(newMoveMsg.board)
+    // Convert msg to client models
+    const board = Object.values(newMoveMsg.board).map(pieceDTO => Piece.fromDTO(pieceDTO));
+    const boardState = updateBoardState(board);
     setValue(state => { return { ...state, boardState }});
   });
 

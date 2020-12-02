@@ -11,6 +11,15 @@ class Piece{
         this.player = player;
         this.space = space;
     }
+
+    /**
+     * Create a piece object from a PiceDTO
+     * @param {Object} pieceDTO: Piece DTO received from the server
+     * @returns {Piece} new Piece object
+     */
+    static fromDTO(pieceDTO) {
+        return new Piece(Player.fromDTO(pieceDTO.player), pieceDTO.space);
+    }
 }
 
 export default Piece;
