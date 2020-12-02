@@ -1,8 +1,8 @@
 name: Documentation
 on: 
     push:
-        branches-ignore: 
-            - main
+      branches:
+        - main
 jobs:
     resources:
         name: Update Documentation
@@ -32,5 +32,5 @@ jobs:
               uses: actions/upload-artifact@v2
               with:
                 name: trouble-server-docs
-                path: docs/stuff/ 
+                path: docs/server/ 
                 if-no-files-found: error    # Flag an error if docs were not generated
