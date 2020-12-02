@@ -1,12 +1,8 @@
 const express = require('express');
-// import express from 'express';
 const path = require('path');
-// import path from 'path';
 
 const http = require('http');
-// import http from 'http';
 const socket = require('./socket/socketManager');
-// import socket from './socket/index.j';
 
 const app = express();
 const server = new http.Server(app);
