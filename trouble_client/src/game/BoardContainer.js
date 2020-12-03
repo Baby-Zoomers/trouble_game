@@ -29,9 +29,8 @@ export default BoardContainer;
  */
 export function updateBoardState(pieces){
   const newBoard = {spaces: {}};
-  const emptySpace = new SpaceState(false, '', false);
   for (let i=0; i<numSpaces; i++) {
-    newBoard.spaces[i] = emptySpace;  // initialize empty
+    newBoard.spaces[i] = new SpaceState(false, '', false);  // initialize empty
   } 
 
   pieces.forEach( piece => {
