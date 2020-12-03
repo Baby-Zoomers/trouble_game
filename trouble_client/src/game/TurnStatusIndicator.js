@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import SocketContext from './socket_context/context';
-import { getPlayerColorDark } from '../Colors';
+import { getPlayerColorDark, getPlayerColorLight } from '../Colors';
 
 
 
@@ -11,7 +11,7 @@ class TurnStatusIndicator extends Component {
   render() {
     const player = this.context.currentPlayer;
     const style = {
-      backgroundColor: player.color,
+      backgroundColor: getPlayerColorLight(player.color),
       color: getPlayerColorDark(player.color)
     }
 
