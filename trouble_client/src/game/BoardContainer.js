@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { getPawnColor } from '../Colors';
 import SpaceState from '../models/SpaceState';
 import Board from './Board'
 
@@ -34,7 +35,7 @@ export function updateBoardState(pieces){
   } 
 
   pieces.forEach( piece => {
-    newBoard.spaces[piece.space] = new SpaceState(true, piece.player.color, false);
+    newBoard.spaces[piece.space] = new SpaceState(true, getPawnColor(piece.player), false);
   })
   return newBoard;
 }

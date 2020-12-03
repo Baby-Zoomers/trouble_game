@@ -1,5 +1,4 @@
-const { PlayerColors } = require("../Colors");
-const { default: Piece } = require("../models/Piece");
+const { PawnColors } = require("../Colors");
 const { updateBoardState } = require("./BoardContainer");
 
 test('Spaces default to unoccupied & unhighlighted', () => {
@@ -35,7 +34,7 @@ test('Occupied spaces are marked as occupied', () => {
 });
 
 test('Occupied spaces have the correct player color', () => {
-  const colors = {red: PlayerColors.red, yellow: PlayerColors.yellow, blue: PlayerColors.blue, green: PlayerColors.green};
+  const colors = {red: PawnColors.red, yellow: PawnColors.yellow, blue: PawnColors.blue, green: PawnColors.green};
   const pieces = [
     {player: {name:'p1', color:'red'},  space: 1},
     {player: {name:'p1', color:'red'},  space: 6},
