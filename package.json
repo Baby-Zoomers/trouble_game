@@ -1,0 +1,28 @@
+{
+  "name": "trouble_game",
+  "version": "1.0.0",
+  "description": "Trouble Board Game for CSE 210 at UCSD",
+  "main": "trouble_server/index.js",
+  "scripts": {
+    "start": "node trouble_server/index.js",
+    "postinstall": "cd trouble_server && npm install",
+    "doc-server": "jsdoc -d docs/server --configure jsdoc.server.conf",
+    "doc-client": "jsdoc -d docs/client --configure jsdoc.client.conf",
+    "heroku-postbuild": "cd trouble_client && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Baby-Zoomers/trouble_game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Baby-Zoomers/trouble_game/issues"
+  },
+  "homepage": "https://github.com/Baby-Zoomers/trouble_game#readme",
+  "dependencies": {
+    "jsdoc": "^3.6.6",
+    "jsdoc-http-plugin": "^0.3.2"
+  }
+}
