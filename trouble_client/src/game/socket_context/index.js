@@ -8,7 +8,7 @@ import Player from "../../models/Player";
 
 const SocketProvider = (props) => {
     const [value, setValue] = useState({
-      rollResult: 0,
+      rollResult: 4,
       currentPlayer: new Player("Brad Pitt", PlayerColors.blue),
       completedPlayer: new Player("Taylor Swift", PlayerColors.green),
       boardState: {
