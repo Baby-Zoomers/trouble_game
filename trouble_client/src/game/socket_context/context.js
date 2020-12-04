@@ -1,11 +1,12 @@
 import { createContext } from "react"; 
-import SpaceState from "../SpaceState";
+import SpaceState from "../../models/SpaceState";
 import { PlayerColors } from "../../Colors";
+import Player from "../../models/Player";
 
 const SocketContext = createContext({  
   rollResult: 0,
-  currentPlayer: "Player 1",
-  completedPlayer: "Player 2",
+  currentPlayer: new Player("Brad Pitt", PlayerColors.yellow),
+  completedPlayer: new Player("Taylor Swift", PlayerColors.green),
   boardState: {
     spaces: {
       0: new SpaceState(true, PlayerColors.red, false),  // Space 0

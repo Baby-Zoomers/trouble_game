@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import GameComponent from './game/GameComponent';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -14,6 +15,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header" data-testid="App-header">
+
           <GameComponent></GameComponent>
         </header>
       </div>

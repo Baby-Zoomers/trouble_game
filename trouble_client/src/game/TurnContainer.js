@@ -10,9 +10,9 @@ class TurnContainer extends Component {
   }
 
     render() {
-        return (<div>
-            {this.props.children}
+        return (<div className={"container-div " + this.props.className}>
             <TurnStatusIndicator player={this.state.currentPlayer}></TurnStatusIndicator>
+            {this.props.children}
         </div>)
       }
 }
