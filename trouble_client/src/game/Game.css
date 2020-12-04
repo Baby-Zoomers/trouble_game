@@ -1,0 +1,7 @@
+.game-container {
+    /* display: flex; */
+    justify-content: start;
+}
+.status-indicator {
+    float: left;
+}

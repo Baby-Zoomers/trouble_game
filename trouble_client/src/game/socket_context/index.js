@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react";
 import SocketContext from "./context"
 import { initSockets } from "./sockets"; 
 //       ^ initSockets is shown later on
-import SpaceState from "../SpaceState";
+import SpaceState from "../../models/SpaceState";
 import { PlayerColors } from "../../Colors";
+import Player from "../../models/Player";
 
 const SocketProvider = (props) => {
     const [value, setValue] = useState({
       rollResult: 0,
-      currentPlayer: "Player 1",
-      completedPlayer: "Player 2",
+      currentPlayer: new Player("Brad Pitt", PlayerColors.blue),
+      completedPlayer: new Player("Taylor Swift", PlayerColors.green),
       boardState: {
         spaces: {
           0: new SpaceState(true, PlayerColors.red, false),  // Space 0
