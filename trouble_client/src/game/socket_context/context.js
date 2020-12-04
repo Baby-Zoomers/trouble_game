@@ -4,6 +4,7 @@ import { PlayerColors } from "../../Colors";
 
 const SocketContext = createContext({  
   rollResult: 0,
+  id: "",
   currentPlayer: "Player 1",
   completedPlayer: "Player 2",
   boardState: {
@@ -68,7 +69,8 @@ const SocketContext = createContext({
       57: new SpaceState(false, PlayerColors.red, false),  // Space 57
       58: new SpaceState(false, PlayerColors.red, false),  // Space 58
       59: new SpaceState(false, PlayerColors.red, false),  // Space 59
-    }
+    },
+    positions: [], // player positions?
   },
   gameOver: false,
 }); 

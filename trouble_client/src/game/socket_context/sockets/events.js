@@ -6,7 +6,9 @@ import { socket } from './index';
  */
 export const socketEvents = ({ setValue }) => {
   socket.on('rollResult', (rollResult) => {
-    setValue(state => { return { ...state, rollResult }});
+    setValue(state => { 
+      return { ...state, rollResult };
+    });
   });
 
   socket.on('currentPlayer', ({ currentPlayer }) => {
