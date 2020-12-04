@@ -131,7 +131,7 @@ class Board extends Component {
   renderDiceDots(){
     const dots = this.dotsMapping[this.context.rollResult].map( dotNum =>
       <circle
-        id={"dot " + dotNum.toString()}
+        id={"dot" + dotNum.toString()}
         key={dotNum}
         cx={this.diceDotsParams[dotNum].cx}
         cy={this.diceDotsParams[dotNum].cy}
