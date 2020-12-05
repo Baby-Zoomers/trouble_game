@@ -4,7 +4,7 @@ import { PawnColors, PlayerColors } from "../../Colors";
 import Player from "../../models/Player";
 
 const SocketContext = createContext({  
-  rollResult: 0,
+  rollResult: 3,
   currentPlayer: new Player("Brad Pitt", PlayerColors.yellow),
   completedPlayer: new Player("Taylor Swift", PlayerColors.green),
   boardState: {
