@@ -42,9 +42,6 @@
     ]
   },
   "devDependencies": {
-    "npm-watch": "^0.7.0"
-  },
-  "watch": {
-    "build": "src/"
+    "jest-color": "^0.1.0"
   }
 }

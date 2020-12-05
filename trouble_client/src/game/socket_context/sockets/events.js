@@ -1,3 +1,9 @@
+<<<<<<< Updated upstream
+import Piece from '../../../models/Piece';
+import { updateBoardState } from '../../BoardContainer';
+=======
+import Player from '../../../models/Player';
+>>>>>>> Stashed changes
 import { socket } from './index';
 
 /**
@@ -12,14 +18,23 @@ export const socketEvents = ({ setValue }) => {
   });
 
   socket.on('currentPlayer', ({ currentPlayer }) => {
-    setValue(state => { return { ...state, currentPlayer }});
+    setValue(state => { return { ...state, 
+      currentPlayer: new Player(currentPlayer.name, currentPlayer.color) }
+    });
+  });
+
+  socket.on('myTurn', ({ myTurn }) => {
+    setValue(state => { return { ...state, myTurn }});
   });
 
   socket.on('completedPlayer', ({ completedPlayer }) => {
     setValue(state => { return { ...state, completedPlayer }});
   });
 
-  socket.on('boardState', ({boardState}) => {
+  socket.on('newMove', (newMoveMsg) => {
+    // Convert msg to client models
+    const board = Object.values(newMoveMsg.board).map(pieceDTO => Piece.fromDTO(pieceDTO));
+    const boardState = updateBoardState(board);
     setValue(state => { return { ...state, boardState }});
   });
 

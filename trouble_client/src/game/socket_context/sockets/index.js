@@ -3,7 +3,8 @@ import { socketEvents } from "./events";
 import { v4 as uuidv4 } from 'uuid';
 // import { getGameBoard } from "./emit";
 export const id = uuidv4();
-export const socket = io(window.location, {query: {id}});
+// export const socket = io(window.location, {query: {id}});
+export const socket = io({query: {id}});
 
 export const initSockets = ({ setValue }) => {
   socketEvents({ setValue });

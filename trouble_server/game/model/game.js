@@ -113,12 +113,6 @@ class Game {
         return this.userList[this.currentUser]
     }
 
-
-    
-
-    
-
-
 }
 module.exports.Game = Game
 // const game = new Game(0)

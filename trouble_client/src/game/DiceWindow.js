@@ -9,7 +9,7 @@ class DiceWindow extends Component {
 
     render() {
         return (
-        <div bg-color="#bbbbbb" onClick={this.props.handleDiceClick}>lastRoll was a {this.context.rollResult}</div>
+        <div bg-color="#bbbbbb" onClick={this.props.handleDiceClick}>{this.context.id}: {this.context.myTurn ? "my turn: " : "waiting... "} lastRoll was a {this.context.rollResult}</div>
         );
       }
 
