@@ -1,9 +1,6 @@
-<<<<<<< Updated upstream
 import Piece from '../../../models/Piece';
 import { updateBoardState } from '../../BoardContainer';
-=======
 import Player from '../../../models/Player';
->>>>>>> Stashed changes
 import { socket } from './index';
 
 /**
@@ -11,9 +8,9 @@ import { socket } from './index';
  * @classdesc listens to events emitted from server
  */
 export const socketEvents = ({ setValue }) => {
-  socket.on('rollResult', (rollResult) => {
+  socket.on('rollResult', ({rollResult, availablePieces}) => {
     setValue(state => { 
-      return { ...state, rollResult };
+      return { ...state, rollResult, availablePieces };
     });
   });
 

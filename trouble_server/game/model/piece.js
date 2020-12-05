@@ -11,13 +11,15 @@
  */
 
 class Piece {
-    constructor(color, index, position, start) {
+    constructor(color, player, index, position, start) {
         this.color = color
+        this.player = player
         this.index = index
         this.initPosition = position
         this.startPosition = start
         this.position = position
-        this.finishLine = false
+        this.onCircle = false
+        this.finishlineReady = false
         this.terminated = false
       }
     
@@ -43,7 +45,10 @@ class Piece {
         }
         //Check if ready to enter its own finishline
         if (this.currentPosition === this.startPosition - 1) {
-            this.finishLine = true
+            this.finishlineReady = true
+        }
+        if (this.onCircle === false && this.currentPosition >= 0 && this.currentPosition <= 27) {
+            this.onCircle = true
         }
     }
 }

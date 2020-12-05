@@ -16,8 +16,9 @@ const socket = (app) => {
 
         socket.gameid = gameId;
 
+        let gameRoom = rooms[gameId];
         if (!rooms[gameId]) {
-            const gameRoom = new GameRoom({ io, socket, gameId: newGameId });
+            gameRoom = new GameRoom({ io, socket, gameId: newGameId });
             const gameJoined = await gameRoom.init();
             rooms[gameId] = gameRoom;
         } else {
