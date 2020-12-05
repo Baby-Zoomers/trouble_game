@@ -1,3 +1,4 @@
+import { PlayerColors } from "../Colors";
 
 /** Represents a player in the game. */
 class Player{
@@ -9,6 +10,15 @@ class Player{
     constructor(name, color){
         this.name = name;
         this.color = color;
+    }
+
+    /**
+     * Create a player object from a Player DTO
+     * @param {Object} playerDTO: Player DTO received from the server
+     * @returns {Player} new Player object
+     */
+    static fromDTO(playerDTO) {
+        return new Player(playerDTO.name, PlayerColors[playerDTO.color]);
     }
 }
 
