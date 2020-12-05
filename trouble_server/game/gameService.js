@@ -60,7 +60,7 @@ const handleMovePiece = (gameID, piece) => {
 /**
  * Handle the newMove event
  * @param {number} gameID - the gameID of current game
- * @return {pieceDTO []} - a boardDTO represents the updated board
+ * @return {pieceDTO[]} - a boardDTO represents the updated board
  */
 const handleNewMove = (gameID) => {
     let currentGame = database.gameList[gameID]
