@@ -15,6 +15,13 @@ class playerDTO {
     } 
 }
 
+class pieceDTO {
+    constructor (player, space) {
+        this.player = player
+        this.space = space
+    }
+}
+
 
 /**
  * Handle the dice rolling event
@@ -25,7 +32,11 @@ const handleDiceRoll = (gameID) => {
     let currentGame = database.gameList[gameID]
     let rollResult = currentGame.rollDice()
     // socketManager.sendRollResult(rollResult)
-    return rollResult
+    let availablePieces = currentGame.getAvailablePieces()
+    return {
+        rollResult,
+        availablePieces
+    }
 }
 
 /**
@@ -47,6 +58,25 @@ const handleMovePiece = (gameID, piece) => {
 }
 
 /**
+ * Handle the newMove event
+ * @param {number} gameID - the gameID of current game
+ * @return {pieceDTO []} - a boardDTO represents the updated board
+ */
+const handleNewMove = (gameID) => {
+    let currentGame = database.gameList[gameID]
+    //currentGame.movePiece(x)
+    let pieceArray = currentGame.gameBoard.board
+    var pieceDTOArray = []
+    pieceArray.forEach(piece => {
+        let currentPlayerDTO = new playerDTO(piece.player, piece.color)
+        let currentPieceDTO = new pieceDTO(currentPlayerDTO, piece.position)
+        pieceDTOArray.push(currentPieceDTO)
+    });
+    return pieceDTOArray
+
+} 
+
+/**
  * Handle the game joining event
  * @param {playerDTO} player 
  * @param {number} gameID 
@@ -60,16 +90,19 @@ const handlejoinGame = (player, gameID) => {
 
 }
 
-var testPiece = new Piece('blue', 1, 1,1)
+var testPiece = new Piece('blue', 'Jordan', 1, 1, 1)
 console.log(handleDiceRoll(0))
 console.log(handleMovePiece(0, testPiece))
 console.log(handleMovePiece(0, testPiece))
 console.log(handleMovePiece(0, testPiece))
+//console.log(handleNewMove(0, testPiece))
+
 
 module.exports = {
     //property name: function name
     handleDiceRoll: handleDiceRoll,
     handleMovePiece: handleMovePiece,
     handlejoinGame: handlejoinGame,
-    playerDTO: playerDTO
+    playerDTO: playerDTO,
+    pieceDTO: pieceDTO
 }
