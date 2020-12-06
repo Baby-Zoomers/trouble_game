@@ -9,34 +9,36 @@ import Player from "../../models/Player";
 const SocketProvider = (props) => {
     const [value, setValue] = useState({
       rollResult: 4,
-      currentPlayer: new Player("Brad Pitt", PlayerColors.blue),
+      myTurn: false,
+      availableMoves: [],
+      currentPlayer: new Player("Waiting for Connection", PlayerColors.red),
       completedPlayer: new Player("Taylor Swift", PlayerColors.green),
       boardState: {
         spaces: {
-          0: new SpaceState(true, PawnColors.red, false),  // Space 0
-          1: new SpaceState(true, PawnColors.red, false),  // Space 1
+          0: new SpaceState(false, PawnColors.red, false),  // Space 0
+          1: new SpaceState(false, PawnColors.red, false),  // Space 1
           2: new SpaceState(false, PawnColors.red, false),  // Space 2
           3: new SpaceState(false, PawnColors.red, false),  // Space 3
-          4: new SpaceState(true, PawnColors.red, false),  // Space 4
+          4: new SpaceState(false, PawnColors.red, false),  // Space 4
           5: new SpaceState(false, PawnColors.red, false),  // Space 5
-          6: new SpaceState(true, PawnColors.red, false),  // Space 6
+          6: new SpaceState(false, PawnColors.red, false),  // Space 6
           7: new SpaceState(false, PawnColors.red, false),  // Space 7
-          8: new SpaceState(true, PawnColors.red, false),  // Space 8
-          9: new SpaceState(true, PawnColors.red, false),  // Space 9
-          10: new SpaceState(true, PawnColors.yellow, false),  // Space 10
-          11: new SpaceState(true, PawnColors.yellow, false),  // Space 11
-          12: new SpaceState(true, PawnColors.yellow, false),  // Space 12
-          13: new SpaceState(true, PawnColors.yellow, false),  // Space 13
+          8: new SpaceState(false, PawnColors.red, false),  // Space 8
+          9: new SpaceState(false, PawnColors.red, false),  // Space 9
+          10: new SpaceState(false, PawnColors.yellow, false),  // Space 10
+          11: new SpaceState(false, PawnColors.yellow, false),  // Space 11
+          12: new SpaceState(false, PawnColors.yellow, false),  // Space 12
+          13: new SpaceState(false, PawnColors.yellow, false),  // Space 13
           14: new SpaceState(false, PawnColors.red, false),  // Space 14
           15: new SpaceState(false, PawnColors.red, false),  // Space 15
           16: new SpaceState(false, PawnColors.red, false),  // Space 16
           17: new SpaceState(false, PawnColors.red, false),  // Space 17
           18: new SpaceState(false, PawnColors.red, false),  // Space 18
           19: new SpaceState(false, PawnColors.red, false),  // Space 19
-          20: new SpaceState(true, PawnColors.blue, false),  // Space 20
-          21: new SpaceState(true, PawnColors.blue, false),  // Space 21
-          22: new SpaceState(true, PawnColors.blue, false),  // Space 22
-          23: new SpaceState(true, PawnColors.blue, false),  // Space 23
+          20: new SpaceState(false, PawnColors.blue, false),  // Space 20
+          21: new SpaceState(false, PawnColors.blue, false),  // Space 21
+          22: new SpaceState(false, PawnColors.blue, false),  // Space 22
+          23: new SpaceState(false, PawnColors.blue, false),  // Space 23
           24: new SpaceState(false, PawnColors.red, false),  // Space 24
           25: new SpaceState(false, PawnColors.red, false),  // Space 25
           26: new SpaceState(false, PawnColors.red, false),  // Space 26
@@ -47,12 +49,12 @@ const SocketProvider = (props) => {
           31: new SpaceState(false, PawnColors.red, false),  // Space 31
           32: new SpaceState(false, PawnColors.red, false),  // Space 32
           33: new SpaceState(false, PawnColors.red, false),  // Space 33
-          34: new SpaceState(true, PawnColors.red, true),  // Space 34
-          35: new SpaceState(true, PawnColors.red, true),  // Space 35
-          36: new SpaceState(true, PawnColors.red, true),  // Space 36
-          37: new SpaceState(true, PawnColors.red, true),  // Space 37
-          38: new SpaceState(true, PawnColors.red, true),  // Space 38
-          39: new SpaceState(true, PawnColors.red, true),  // Space 39
+          34: new SpaceState(false, PawnColors.red, false),  // Space 34
+          35: new SpaceState(false, PawnColors.red, false),  // Space 35
+          36: new SpaceState(false, PawnColors.red, false),  // Space 36
+          37: new SpaceState(false, PawnColors.red, false),  // Space 37
+          38: new SpaceState(false, PawnColors.red, false),  // Space 38
+          39: new SpaceState(false, PawnColors.red, false),  // Space 39
           40: new SpaceState(false, PawnColors.red, false),  // Space 40
           41: new SpaceState(false, PawnColors.red, false),  // Space 41
           42: new SpaceState(false, PawnColors.red, false),  // Space 42

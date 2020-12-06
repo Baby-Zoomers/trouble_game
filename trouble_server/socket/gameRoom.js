@@ -15,8 +15,8 @@ class GameRoom {
 
     async init() {
         await this.addPlayer(this.host.handshake.query.id, this.host);
-        this.host.emit('myTurn', {myTurn: true});
-
+        this.host.emit('myTurn', true);
+        
         // or maybe some other stuff? idk
         // depends on what gameService needs ig
     }
@@ -27,6 +27,11 @@ class GameRoom {
         this.setDiceEvent(playerSocket);
         this.setMoveEvent(playerSocket);
         GameService.handlejoinGame({ name: id, color}, this.gameId);
+        const {board, currentPlayer} = GameService.accessGameState(this.gameId);
+        Object.values(this.players).forEach((player) => {
+            player.socket.emit('newMove', {board: board});
+            player.socket.emit('currentPlayer', currentPlayer);
+        });
     }
 
     async removePlayer(id) {
@@ -46,16 +51,19 @@ class GameRoom {
     }
 
     setMoveEvent(socket) {
-        socket.on('move', (info) => {
-            const { piece } = info;
-            console.log('asking to move, info provided: ', info)
+        socket.on('movePiece', (piece) => {
+            console.log('asking to move, info provided: ', piece)
 
-            const newBoard = GameService.handleMovePiece(this.gameId, piece);
+            GameService.handleMovePiece(this.gameId, piece);
+            const { newBoard, currentPlayer } = GameService.accessGameState(this.gameId);
 
             Object.values(this.players).forEach((player) => {
-                player.socket.emit('move', newBoard);
-                player.socket.emit('currentPlayer', false);
+                player.socket.emit('myTurn', false);
+                player.socket.emit('newMove', {board: newBoard});
+                player.socket.emit('currentPlayer', currentPlayer);
             });
+
+            this.players[newPlayer.name].socket.emit('myTurn', true);
 
         });
     }

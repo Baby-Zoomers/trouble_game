@@ -22,7 +22,6 @@ class pieceDTO {
     }
 }
 
-
 /**
  * Handle the dice rolling event
  * @param {number} gameID - the gameID of current game
@@ -33,25 +32,32 @@ const handleDiceRoll = (gameID) => {
     let rollResult = currentGame.rollDice()
     // socketManager.sendRollResult(rollResult)
     let availablePieces = currentGame.getAvailablePieces()
+    var availableMoves = []
+    availablePieces.forEach(piece => {
+        let currentPlayerDTO = new playerDTO(piece.player, piece.color)
+        let currentPieceDTO = new pieceDTO(currentPlayerDTO, piece.position)
+        availableMoves.push(currentPieceDTO)
+    });
     return {
         rollResult,
-        availablePieces
+        availableMoves
     }
 }
 
 /**
  * Handle the piece moving event
  * @param {number} gameID - the gameID of current game
- * @param {Piece} piece - the piece which is selected to be moved
+ * @param {PieceDTO} piece - the piece which is selected to be moved
  * @return {palyerDTO} - the player for next turn
  */
 const handleMovePiece = (gameID, piece) => {
     let currentGame = database.gameList[gameID]
-    currentGame.movePiece(piece)
+    currentGame.movePiece(piece.space)
     var currentPlayer = currentGame.getPlayer()
-    if (currentGame.getDice() !== 6) {
-        currentPlayer = currentGame.updateTurn()
-    }
+    // if (currentGame.getDice() !== 6) {
+    //     currentPlayer = currentGame.updateTurn()
+    // }
+    currentPlayer = currentGame.updateTurn()
     let currentPlayerDTO = new playerDTO (currentPlayer.name, currentPlayer.color)
     //socketManager.sendNextTurn(currentPlayerDTO)
     return currentPlayerDTO
@@ -62,7 +68,7 @@ const handleMovePiece = (gameID, piece) => {
  * @param {number} gameID - the gameID of current game
  * @return {pieceDTO[]} - a boardDTO represents the updated board
  */
-const handleNewMove = (gameID) => {
+const accessGameState = (gameID) => {
     let currentGame = database.gameList[gameID]
     //currentGame.movePiece(x)
     let pieceArray = currentGame.gameBoard.board
@@ -72,7 +78,10 @@ const handleNewMove = (gameID) => {
         let currentPieceDTO = new pieceDTO(currentPlayerDTO, piece.position)
         pieceDTOArray.push(currentPieceDTO)
     });
-    return pieceDTOArray
+    // console.log(pieceDTOArray);
+    let currentPlayer = currentGame.getPlayer()
+    let currentPlayerDTO = new playerDTO (currentPlayer.name, currentPlayer.color)
+    return {board: pieceDTOArray, currentPlayer: currentPlayerDTO }
 
 } 
 
@@ -90,18 +99,19 @@ const handlejoinGame = (player, gameID) => {
 
 }
 
-var testPiece = new Piece('blue', 'Jordan', 1, 1, 1)
-console.log(handleDiceRoll(0))
-console.log(handleMovePiece(0, testPiece))
-console.log(handleMovePiece(0, testPiece))
-console.log(handleMovePiece(0, testPiece))
-//console.log(handleNewMove(0, testPiece))
+// var testPiece = new Piece('blue', 'Jordan', 1, 1, 1)
+// console.log(handleDiceRoll(0))
+// console.log(handleMovePiece(0, testPiece))
+// console.log(handleMovePiece(0, testPiece))
+// console.log(handleMovePiece(0, testPiece))
+//console.log(andleNewMove(0, testPiece))
 
 
 module.exports = {
     //property name: function name
     handleDiceRoll: handleDiceRoll,
     handleMovePiece: handleMovePiece,
+    accessGameState: accessGameState,
     handlejoinGame: handlejoinGame,
     playerDTO: playerDTO,
     pieceDTO: pieceDTO

@@ -8,19 +8,20 @@ import { socket } from './index';
  * @classdesc listens to events emitted from server
  */
 export const socketEvents = ({ setValue }) => {
-  socket.on('rollResult', ({rollResult, availablePieces}) => {
+  socket.on('rollResult', ({rollResult, availableMoves}) => {
     setValue(state => { 
-      return { ...state, rollResult, availablePieces };
+      console.log(availableMoves);
+      return { ...state, rollResult, availableMoves };
     });
   });
 
-  socket.on('currentPlayer', ({ currentPlayer }) => {
+  socket.on('currentPlayer', (currentPlayer) => {
     setValue(state => { return { ...state, 
       currentPlayer: new Player(currentPlayer.name, currentPlayer.color) }
     });
   });
 
-  socket.on('myTurn', ({ myTurn }) => {
+  socket.on('myTurn', (myTurn) => {
     setValue(state => { return { ...state, myTurn }});
   });
 
@@ -30,6 +31,7 @@ export const socketEvents = ({ setValue }) => {
 
   socket.on('newMove', (newMoveMsg) => {
     // Convert msg to client models
+    console.log(newMoveMsg);
     const board = Object.values(newMoveMsg.board).map(pieceDTO => Piece.fromDTO(pieceDTO));
     const boardState = updateBoardState(board);
     setValue(state => { return { ...state, boardState }});

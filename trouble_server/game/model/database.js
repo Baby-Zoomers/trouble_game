@@ -11,8 +11,8 @@ var playerList = new Array()
  */
 
 const testGame = new Game(0)
-testGame.addUser('Jordan', 'blue')
-testGame.addUser('Sam', 'yellow')
+// testGame.addUser('Jordan', 'blue')
+// testGame.addUser('Sam', 'yellow')
 // testGame.addUser('Sim', 'red')
 // testGame.addUser('Yiwei', 'green')
 gameList.push(testGame)

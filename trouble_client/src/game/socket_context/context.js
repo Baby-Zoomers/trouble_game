@@ -8,7 +8,7 @@ const SocketContext = createContext({
   id: "",
   myTurn: false,
   myColor: PlayerColors.blue,
-  currentPlayer: new Player("Brad Pitt", PlayerColors.yellow),
+  currentPlayer: new Player("Waiting for Connection", PlayerColors.yellow),
   completedPlayer: new Player("Taylor Swift", PlayerColors.green),
   boardState: {
     spaces: {

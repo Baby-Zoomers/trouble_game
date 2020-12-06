@@ -55,11 +55,12 @@ class Game {
             for(let i = 0; i < this.piecesPerUser; i++) {
                 let newPiece = new Piece(color, name, i, Colors[color].homeBase[i],  Colors[color].startPoint, Colors[color].finishLine)
                 pieces.push(newPiece)
-                this.gameBoard[newPiece.initPosition] = newPiece
+                this.gameBoard.board[newPiece.initPosition] = newPiece
             }
             newUser.pieces = pieces
             //console.log(newUser.pieces[0].finishLinePosition)
             this.userNumber ++
+            // console.log(this.gameBoard.board)
         } 
         else {
             console.log('Exceed User Limit!')
@@ -102,10 +103,11 @@ class Game {
     }
 
     /** move the piece and update turn
-     * @param {Piece} - selected piece object
+     * @param {int} - space containing the piece to move
      */
-    movePiece = function (piece) {
-        this.gameBoard.updateMoves(piece)
+    movePiece = function (space) {
+        //this.gameBoard.updateMoves(piece)
+        console.log("fake move!")
         
         
     }
