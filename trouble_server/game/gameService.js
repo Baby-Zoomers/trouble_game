@@ -54,12 +54,14 @@ const handleMovePiece = (gameID, piece) => {
     let currentGame = database.gameList[gameID]
     currentGame.movePiece(piece.space)
     var currentPlayer = currentGame.getPlayer()
-    // if (currentGame.getDice() !== 6) {
-    //     currentPlayer = currentGame.updateTurn()
-    // }
+    if (currentGame.getDice() !== 6) {
+        currentPlayer = currentGame.updateTurn()
+    }
     currentPlayer = currentGame.updateTurn()
     let currentPlayerDTO = new playerDTO (currentPlayer.name, currentPlayer.color)
     //socketManager.sendNextTurn(currentPlayerDTO)
+    //console.log(currentGame.gameBoard.board)
+    
     return currentPlayerDTO
 }
 
@@ -70,13 +72,14 @@ const handleMovePiece = (gameID, piece) => {
  */
 const accessGameState = (gameID) => {
     let currentGame = database.gameList[gameID]
-    //currentGame.movePiece(x)
     let pieceArray = currentGame.gameBoard.board
     var pieceDTOArray = []
     pieceArray.forEach(piece => {
-        let currentPlayerDTO = new playerDTO(piece.player, piece.color)
-        let currentPieceDTO = new pieceDTO(currentPlayerDTO, piece.position)
-        pieceDTOArray.push(currentPieceDTO)
+        if (piece !== undefined) {
+            let currentPlayerDTO = new playerDTO(piece.player, piece.color)
+            let currentPieceDTO = new pieceDTO(currentPlayerDTO, piece.position)
+            pieceDTOArray.push(currentPieceDTO)
+        }
     });
     // console.log(pieceDTOArray);
     let currentPlayer = currentGame.getPlayer()
@@ -99,12 +102,11 @@ const handlejoinGame = (player, gameID) => {
 
 }
 
-// var testPiece = new Piece('blue', 'Jordan', 1, 1, 1)
+// let testPlayerDTO = new playerDTO('Jordan', 'Blue')
+// let testPiece = new pieceDTO(testPlayerDTO, 28)
 // console.log(handleDiceRoll(0))
 // console.log(handleMovePiece(0, testPiece))
-// console.log(handleMovePiece(0, testPiece))
-// console.log(handleMovePiece(0, testPiece))
-//console.log(andleNewMove(0, testPiece))
+// console.log(accessGameState(0))
 
 
 module.exports = {

@@ -28,28 +28,28 @@ class Piece {
      * @param {number} steps - steps need to be moved, move(-1) means send back to homebase
      */
     
-    move = function (steps) {
+    move = function (destination, terminated) {
         //send piece back to home base
-        if (steps === -1) {
+        if (destination === -1) {
             this.currentPosition = this.initPosition
+            this.onCircle = false
             console.log('Your piece return to matching home')
         }
         else {
-            //TODO: check the correct destination of the piece.
-            if (this.currentPosition === this.initPosition) {
-                this.currentPosition = steps
-            }
-            else {
-                this.currentPosition += steps
-            }
+            this.position = destination
         }
         //Check if ready to enter its own finishline
         if (this.currentPosition === this.startPosition - 1) {
             this.finishlineReady = true
         }
+        //check if the piece leave the home base
         if (this.onCircle === false && this.currentPosition >= 0 && this.currentPosition <= 27) {
             this.onCircle = true
         }
+        if (terminated === true) {
+            this.terminated = true
+        }
+
     }
 }
 

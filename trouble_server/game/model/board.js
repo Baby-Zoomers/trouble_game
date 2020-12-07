@@ -54,15 +54,37 @@ class Board {
 
      /**
      * Update the move on board
-     * @param {Piece} piece - piece object
+     * @param {number} space - space on board to move
      * @param {number} steps - steps need to move
      */
-    updateMoves = function(piece, steps) {
+    updateMoves = function(space, steps) {
         
-        piece.move(steps)
-        this.board[1] = piece
-        this.board[2] = piece
-        
+        let currentPiece = this.board[space]
+        this.board[space] = undefined
+        var destination
+        //the piece should be terminated
+        if (currentPiece.finishlineReady === true) {
+            destination = finishLineCoordinate[this.finishLineLeft[currentPiece.color]-1]
+            this.board[destination] = currentPiece
+            currentPiece.move(destination, true)
+        }
+        else {
+            
+            if (currentPiece.onCircle === true) { //currentPice is onCircle
+                destination = (currentPiece.position + steps) % 28
+            }
+            else { //still at homebase
+                destination = currentPiece.startPosition
+            }
+            //knick other piece back to homebase
+            if (this.board[destination] !== undefined) {
+                let otherPiece = this.board[destination]
+                this.board[otherPiece.initPosition] = otherPiece
+                otherPiece.move(-1, false)
+            }
+            this.board[destination] = currentPiece
+            currentPiece.move(destination, false)
+        }
     }
 
 }
