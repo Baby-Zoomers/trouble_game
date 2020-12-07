@@ -95,8 +95,8 @@ const accessGameState = (gameID) => {
  */
 const handlejoinGame = (player, gameID) => {
     let currentGame = database.gameList[gameID]
-    name = player.name
-    color = player.color
+    let name = player.name
+    let color = player.color
     currentGame.addUser(name, color)
     console.log('New user ' + name + 'has been created with color ' + color)
 
