@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import SocketContext from './socket_context/context';
+import {getPlayerColorLight} from "../Colors"
  
 class Board extends Component {
   static contextType = SocketContext;
@@ -118,11 +119,30 @@ class Board extends Component {
     }
 
     return(
-      <g id={id} key={id}>
+      <g id={id} key={id} onClick = {()=>{this.pieceClickHandler(spaceNumber)}}>
         {spaceBody}
         { spaceState.highlighted && <circle className="highlight_ring" cx={params.cx} cy={params.cy} r={this.ringParams.highlight.r} stroke={this.ringParams.highlight.stroke} strokeWidth={this.ringParams.highlight.strokeWidth}/> }
       </g>
     )
+  }
+
+  pieceClickHandler(id){
+    console.log(this.context);
+    if(this.context.canMove === false){
+      if(this.context.boardState.spaces[id].occupied === true && this.context.boardState.spaces[id].highlighted === false && this.context.boardState.spaces[id].color === getPlayerColorLight(this.context.currentPlayer.color)){
+        const tempContext = this.context.boardState;
+        tempContext.spaces[id].occupied = false;
+        this.setState({boardState:tempContext,canMove:true});
+      }
+    }
+    else{
+      if(this.context.boardState.spaces[id].occupied === false && this.context.boardState.spaces[id].highlighted === true){
+        const tempContext = this.context.boardState;
+        tempContext.spaces[id].highlighted = false;
+        tempContext.spaces[id].occupied = true;
+        this.setState({boardState:tempContext,canMove:false});
+      }
+    }
   }
 
 /** Render the Dots on the dice to show the current roll. 

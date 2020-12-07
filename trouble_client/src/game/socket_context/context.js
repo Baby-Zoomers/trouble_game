@@ -5,6 +5,7 @@ import Player from "../../models/Player";
 
 const SocketContext = createContext({  
   rollResult: 3,
+  canMove: false,
   currentPlayer: new Player("Brad Pitt", PlayerColors.yellow),
   completedPlayer: new Player("Taylor Swift", PlayerColors.green),
   boardState: {
