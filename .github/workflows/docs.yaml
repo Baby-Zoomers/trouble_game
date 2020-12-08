@@ -1,8 +1,8 @@
 name: Documentation
 on: 
     push:
-        branches-ignore: 
-            - main
+      branches:
+        - main
 jobs:
     resources:
         name: Update Documentation
@@ -21,10 +21,16 @@ jobs:
             - name: Generate Client Documentation
               run: npm run doc-client
               
-            - name: Add Commit
-              uses: EndBug/add-and-commit@v5
+            - name: Upload Client Docs
+              uses: actions/upload-artifact@v2
               with:
-                  add: "docs/*"
-#                   message: Update documentation
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                name: trouble-client-docs
+                path: docs/client/ 
+                if-no-files-found: error    # Flag an error if docs were not generated
+              
+            - name: Upload Server Docs
+              uses: actions/upload-artifact@v2
+              with:
+                name: trouble-server-docs
+                path: docs/server/ 
+                if-no-files-found: error    # Flag an error if docs were not generated

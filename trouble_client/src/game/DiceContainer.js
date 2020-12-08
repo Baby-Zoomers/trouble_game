@@ -21,8 +21,6 @@ class DiceContainer extends Component {
         const handleClose = () => this.setState({show: false});
 
         return (
-      
-
           <div>
             <Button variant="primary" size="lg" block onClick={handleShow}>
               Roll Dice
