@@ -33,6 +33,7 @@ class Board {
      * @return {boolean} - the validity of the move
      */
     isValidMove = function(piece, steps) {
+        console.log(piece, steps);
         //terminated piece
         if (piece.terminated === true) 
             return false
@@ -45,7 +46,7 @@ class Board {
         //check if the piece will land on own piece
         if (piece.onCircle === true) {
             let destination = (piece.position + steps) % 28
-            if (this.board[destination].color === piece.color) {
+            if (this.board[destination] !== undefined && this.board[destination].color === piece.color) {
                 return false
             }
         }
@@ -61,6 +62,7 @@ class Board {
         
         let currentPiece = this.board[space]
         this.board[space] = undefined
+        console.log("move current piece", currentPiece);
         var destination
         //the piece should be terminated
         if (currentPiece.finishlineReady === true) {

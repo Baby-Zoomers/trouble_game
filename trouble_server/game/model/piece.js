@@ -43,7 +43,7 @@ class Piece {
             this.finishlineReady = true
         }
         //check if the piece leave the home base
-        if (this.onCircle === false && this.currentPosition >= 0 && this.currentPosition <= 27) {
+        if (this.onCircle === false && this.position >= 0 && this.position <= 27) {
             this.onCircle = true
         }
         if (terminated === true) {

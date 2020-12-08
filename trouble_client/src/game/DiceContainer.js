@@ -32,6 +32,7 @@ class DiceContainer extends Component {
             <Button variant="primary" size="lg" block onClick={this.handleShow}>
               Roll Dice
             </Button>
+            
 
             <Modal show={this.state.show} onHide={this.handleClose} backdrop="static" keyboard={false}>
               <Modal.Header closeButton>
