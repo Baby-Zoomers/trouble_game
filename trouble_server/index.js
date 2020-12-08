@@ -1,9 +1,13 @@
 const express = require('express');
 const path = require('path');
 
+const http = require('http');
+const socket = require('./socket/socketManager');
+
 const app = express();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+const server = new http.Server(app);
+socket(server);
+
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, '../trouble_client/build')));
@@ -42,16 +46,8 @@ app.get('*', (req, res) => {
 
 const port = process.env.PORT || 5000;
 
-io.on('connection', function(socket){
-  console.log("connection established");
-  socket.on('rollDice', () => {
-    console.log("rolling reuslt: 1");
-    socket.emit('rollResult', 1);
-  })
-});
-
-server = http.listen(port, function(){
+server.listen(port, function(){
   console.log('Trouble API listening on *:' + port);
 });
 
-module.exports = server
+module.exports = server;

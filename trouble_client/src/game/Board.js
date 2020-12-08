@@ -75,6 +75,32 @@ class Board extends Component {
   textParams = {
     lineHeight: 1.25
   }
+  /** Center points of the dots
+   * [ 0 1 2 ]
+   * [ 3 4 5 ]
+   * [ 6 7 8 ]
+   */
+  diceDotsParams = {
+    0: {cx:387.0, cy: 387.0},
+    1: {cx:400.0, cy: 387.0},
+    2: {cx:413.0, cy: 387.0},
+    3: {cx:387.0, cy: 400.0},
+    4: {cx:400.0, cy: 400.0},
+    5: {cx:413.0, cy: 400.0},
+    6: {cx:387.0, cy: 413.0},
+    7: {cx:400.0, cy: 413.0},
+    8: {cx:413.0, cy: 413.0},
+    fill: '#000000',
+    r: 5
+  }
+  dotsMapping = {
+    1: [4],
+    2: [0, 8],
+    3: [6, 4, 2],
+    4: [0, 2, 6, 8],
+    5: [0, 2, 6, 8, 4],
+    6: [0, 2, 3, 5, 6, 8],
+  }
   
   /** Render an individual space
    * @param spaceNumber {int} space number to render
@@ -97,14 +123,34 @@ class Board extends Component {
         { spaceState.highlighted && <circle className="highlight_ring" cx={params.cx} cy={params.cy} r={this.ringParams.highlight.r} stroke={this.ringParams.highlight.stroke} strokeWidth={this.ringParams.highlight.strokeWidth}/> }
       </g>
     )
-  }  
+  }
 
+/** Render the Dots on the dice to show the current roll. 
+ * Roll is mapped to a list of dots to draw and then the dots are individually drawn based on their params.
+ */
+  renderDiceDots(){
+    const dots = this.dotsMapping[this.context.rollResult].map( dotNum =>
+      <circle
+        id={"dot" + dotNum.toString()}
+        key={dotNum}
+        cx={this.diceDotsParams[dotNum].cx}
+        cy={this.diceDotsParams[dotNum].cy}
+        fill={this.diceDotsParams.fill}
+        r={this.diceDotsParams.r} />
+      );
+
+    return (
+      <g id="diceDots">
+        {dots}
+      </g>
+    )
+  }
 
    render() {
     return (
 <svg id="SVGRoot" width="800px" height="800px" version="1.1" viewBox="0 0 800 800">  
   <g id="layer1">
-    <rect id="rect36" x="50" y="50" width="700" height="700" fill="#fff" fillRule="evenodd" stroke="#000" strokeWidth="2"/>
+    <rect id="rect36" x="0" y="0" width="800" height="800" fill="#fff" fillRule="evenodd" stroke="#000" strokeWidth="2"/>
     <circle id="path912-2" cx="400" cy="400" r="314.03" fill="none" opacity=".998" stroke="#d0e0f2" strokeWidth="50"/>
     <g id="layer4">
       <path id="use3600" d="m468.39 329.94 114.1-114.1 12.189-63.947" fill="none" stroke="#f2c94c" strokeLinecap="round" strokeLinejoin="round" strokeWidth="60"/>
@@ -169,14 +215,12 @@ class Board extends Component {
     { Object.keys(this.context.boardState.spaces).map((spaceNum) => this.renderSpace(spaceNum, this.context.boardState.spaces[spaceNum])) }  
   </g>
   <g id="layer2">
-    <g id="g925" transform="matrix(.46241 .46241 -.46241 .46241 400 30.074)">
-      <rect id="rect862" x="300.92" y="300.92" width="198.15" height="198.15" opacity=".998"/>
-      <circle id="path864" cx="400" cy="400" r="75" fill="#f2f2f2" opacity=".998"/>
-      <rect id="rect882" x="369.6" y="360.51" width="48.229" height="48.229" fill="#f2f2f2" opacity=".998" stroke="#ccc" strokeWidth="1.771"/>
-      <g id="g910" transform="translate(.61793 -.069003)">
-        <circle id="path884" transform="rotate(47.319)" cx="549.94" cy="-8.1222" r="7" opacity=".998"/>
-        <circle id="path884-3" transform="rotate(47.319)" cx="549.29" cy="-28.191" r="7" opacity=".998"/>
-        <circle id="path884-36" transform="rotate(47.319)" cx="548.64" cy="-48.259" r="7" opacity=".998"/>
+    <g id="g925" >
+      <rect id="rect862" x="332.24" y="332.24" width="135.52" height="135.52" transform="rotate(-45.00,400.00, 400.00)" opacity=".998"/>
+      <circle id="path864" cx="400" cy="400" r="60.0" fill="#f2f2f2" opacity=".998"/>
+      <g id="dice">
+        <rect opacity="0.998" fill='#f2f2f2' stroke='#cccccc' strokeWidth='1.77103' id="diceBorder" width="48.228966" height="48.22897" x="375.8855" y="375.8855" />
+        {this.renderDiceDots()}
       </g>
     </g>
   </g>
