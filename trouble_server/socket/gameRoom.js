@@ -55,15 +55,15 @@ class GameRoom {
             console.log('asking to move, info provided: ', piece)
 
             GameService.handleMovePiece(this.gameId, piece);
-            const { newBoard, currentPlayer } = GameService.accessGameState(this.gameId);
+            const { board, currentPlayer } = GameService.accessGameState(this.gameId);
 
             Object.values(this.players).forEach((player) => {
                 player.socket.emit('myTurn', false);
-                player.socket.emit('newMove', {board: newBoard});
+                player.socket.emit('newMove', {board});
                 player.socket.emit('currentPlayer', currentPlayer);
             });
 
-            this.players[newPlayer.name].socket.emit('myTurn', true);
+            this.players[currentPlayer.name].socket.emit('myTurn', true);
 
         });
     }

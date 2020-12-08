@@ -1,6 +1,9 @@
 import { Component } from 'react';
 import SocketContext from './socket_context/context';
 
+import Button from 'react-bootstrap/Button';
+
+
 
 /** UI component to prompt the user to roll the dice and then show the result*/
 class DiceWindow extends Component {
@@ -9,14 +12,12 @@ class DiceWindow extends Component {
 
     render() {
         return (
-        <div bg-color="#bbbbbb" onClick={this.props.handleDiceClick}>{this.context.id}: {this.context.myTurn ? "my turn: " : "waiting... "} lastRoll was a {this.context.rollResult}</div>
+          <Button variant="primary" onClick={this.props.handleDiceClick}>
+          Roll
+          </Button>
         );
       }
 
-      /* Called when dice are clicked */
-  handleDiceClick = () => {
-    this.props.handleDiceClick();
-  }
 }
 
 export default DiceWindow;
