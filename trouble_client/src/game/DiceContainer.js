@@ -20,7 +20,7 @@ class DiceContainer extends Component {
 
   handleShow = () => this.setState({show: true});
   handleClose = () => {
-    if (this.context.availableMoves.length == 0) {
+    if (this.context.availableMoves.length === 0) {
       movePiece(null);
     }
     this.setState({show: false});
@@ -52,7 +52,7 @@ class DiceContainer extends Component {
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                {this.context.availableMoves.length == 0 ? "No moves available. Close dice window to end turn" : "You rolled a " + this.context.rollResult + ". Close dice window to select piece to move." }
+                {this.context.availableMoves.length === 0 ? "No moves available. Close dice window to end turn" : "You rolled a " + this.context.rollResult + ". Close dice window to select piece to move." }
               </Modal.Body>
               <Modal.Footer>
                 <DiceWindow roll={this.state.diceRoll} handleDiceClick={this.handleClose}></DiceWindow>

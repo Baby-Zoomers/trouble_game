@@ -115,7 +115,7 @@ class Board extends Component {
     let onClick;
     let spaceBody;
 
-    if (myTurn && availableMoves.reduce((acc, piece) => acc || piece.space == spaceNumber, false)) {
+    if (myTurn && availableMoves.reduce((acc, piece) => acc || piece.space === spaceNumber, false)) {
       onClick = () => {
         console.log(spaceNumber);
         movePiece({ player: currentPlayer, space: spaceNumber });
