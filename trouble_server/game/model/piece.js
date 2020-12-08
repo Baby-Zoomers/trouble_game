@@ -21,6 +21,7 @@ class Piece {
         this.onCircle = false
         this.finishlineReady = false
         this.terminated = false
+        this.travel = 0
       }
     
     /**
@@ -33,9 +34,11 @@ class Piece {
         if (destination === -1) {
             this.currentPosition = this.initPosition
             this.onCircle = false
+            this.travel = 0
             console.log('Your piece return to matching home')
         }
         else {
+            
             this.position = destination
         }
         //Check if ready to enter its own finishline

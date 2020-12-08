@@ -11,7 +11,9 @@ export const socketEvents = ({ setValue }) => {
   socket.on('rollResult', ({rollResult, availableMoves}) => {
     setValue(state => { 
       console.log(availableMoves);
-      return { ...state, rollResult, availableMoves };
+      const boardState = state.boardState;
+      availableMoves.forEach(piece => boardState.spaces[piece.space].highlighted = true);
+      return { ...state, rollResult, availableMoves, boardState};
     });
   });
 

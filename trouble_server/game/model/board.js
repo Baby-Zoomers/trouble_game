@@ -49,6 +49,9 @@ class Board {
             if (this.board[destination] !== undefined && this.board[destination].color === piece.color) {
                 return false
             }
+            if (piece.travel + steps > 27) {
+                return false
+            }
         }
         return true
     }

@@ -51,17 +51,30 @@ const handleDiceRoll = (gameID) => {
  * @return {palyerDTO} - the player for next turn
  */
 const handleMovePiece = (gameID, piece) => {
+    // let currentGame = database.gameList[gameID]
+    // currentGame.movePiece(piece.space)
+    // var currentPlayer = currentGame.getPlayer()
+    // if (currentGame.getDice() !== 6) {
+    //     currentPlayer = currentGame.updateTurn()
+    // }
+    // //currentPlayer = currentGame.updateTurn()
+    // let currentPlayerDTO = new playerDTO (currentPlayer.name, currentPlayer.color)
+    // //socketManager.sendNextTurn(currentPlayerDTO)
+    // //console.log(currentGame.gameBoard.board)
+    
+    // return currentPlayerDTO
     let currentGame = database.gameList[gameID]
-    currentGame.movePiece(piece.space)
     var currentPlayer = currentGame.getPlayer()
-    if (currentGame.getDice() !== 6) {
+    if (piece === null) {
         currentPlayer = currentGame.updateTurn()
     }
-    currentPlayer = currentGame.updateTurn()
+    else {
+        currentGame.movePiece(piece.space)
+        if (currentGame.getDice() !== 6) {
+            currentPlayer = currentGame.updateTurn()
+        }
+    }
     let currentPlayerDTO = new playerDTO (currentPlayer.name, currentPlayer.color)
-    //socketManager.sendNextTurn(currentPlayerDTO)
-    //console.log(currentGame.gameBoard.board)
-    
     return currentPlayerDTO
 }
 

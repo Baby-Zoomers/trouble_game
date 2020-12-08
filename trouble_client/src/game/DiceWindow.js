@@ -13,7 +13,7 @@ class DiceWindow extends Component {
     render() {
         return (
           <Button variant="primary" onClick={this.props.handleDiceClick}>
-          Roll
+          Close
           </Button>
         );
       }
