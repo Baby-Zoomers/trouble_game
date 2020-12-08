@@ -38,7 +38,7 @@ class Piece {
             console.log('Your piece return to matching home')
         }
         else {
-            
+
             this.position = destination
         }
         //Check if ready to enter its own finishline
