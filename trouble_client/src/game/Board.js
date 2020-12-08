@@ -223,7 +223,7 @@ class Board extends Component {
       <path id="path2221" d="m714.03 400h-628.06" stroke="#000" strokeWidth="1px"/>
     </g>
     {/* Render all the spaces */}
-    { Object.keys(this.context.boardState.spaces).map((spaceNum) => this.renderSpace(spaceNum, this.context.boardState.spaces[spaceNum], this.context.myTurn, this.context.currentPlayer, this.context.availableMoves)) }  
+    { Object.keys(this.context.boardState.spaces).map((spaceNum) => this.renderSpace(parseInt(spaceNum), this.context.boardState.spaces[spaceNum], this.context.myTurn, this.context.currentPlayer, this.context.availableMoves)) }  
   </g>
   <g id="layer2">
     <g id="g925" >
