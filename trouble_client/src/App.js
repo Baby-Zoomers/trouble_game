@@ -3,6 +3,8 @@ import './App.css';
 import GameComponent from './game/GameComponent';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 /** Main React App component
  * @extends Component
  */
