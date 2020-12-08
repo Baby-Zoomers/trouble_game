@@ -77,6 +77,7 @@ class Board {
             
             if (currentPiece.onCircle === true) { //currentPice is onCircle
                 destination = (currentPiece.position + steps) % 28
+                currentPiece.travel += steps
             }
             else { //still at homebase
                 destination = currentPiece.startPosition
