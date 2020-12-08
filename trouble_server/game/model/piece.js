@@ -11,14 +11,17 @@
  */
 
 class Piece {
-    constructor(color, index, position, start) {
+    constructor(color, player, index, position, start) {
         this.color = color
+        this.player = player
         this.index = index
         this.initPosition = position
         this.startPosition = start
         this.position = position
-        this.finishLine = false
+        this.onCircle = false
+        this.finishlineReady = false
         this.terminated = false
+        this.travel = 0
       }
     
     /**
@@ -26,25 +29,30 @@ class Piece {
      * @param {number} steps - steps need to be moved, move(-1) means send back to homebase
      */
     
-    move = function (steps) {
+    move = function (destination, terminated) {
         //send piece back to home base
-        if (steps === -1) {
+        if (destination === -1) {
             this.currentPosition = this.initPosition
+            this.onCircle = false
+            this.travel = 0
             console.log('Your piece return to matching home')
         }
         else {
-            //TODO: check the correct destination of the piece.
-            if (this.currentPosition === this.initPosition) {
-                this.currentPosition = steps
-            }
-            else {
-                this.currentPosition += steps
-            }
+            
+            this.position = destination
         }
         //Check if ready to enter its own finishline
         if (this.currentPosition === this.startPosition - 1) {
-            this.finishLine = true
+            this.finishlineReady = true
         }
+        //check if the piece leave the home base
+        if (this.onCircle === false && this.position >= 0 && this.position <= 27) {
+            this.onCircle = true
+        }
+        if (terminated === true) {
+            this.terminated = true
+        }
+
     }
 }
 

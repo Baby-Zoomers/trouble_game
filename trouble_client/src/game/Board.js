@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import SocketContext from './socket_context/context';
+import { movePiece } from './socket_context/sockets/emit'
  
 class Board extends Component {
   static contextType = SocketContext;
@@ -101,18 +102,28 @@ class Board extends Component {
     5: [0, 2, 6, 8, 4],
     6: [0, 2, 3, 5, 6, 8],
   }
-  
+
+   
   /** Render an individual space
    * @param spaceNumber {int} space number to render
    * @param spaceState {SpaceState} object representing the state of the space
    * @returns JSX code necessary to render in the SVG
   */
-  renderSpace(spaceNumber, spaceState){
+  renderSpace(spaceNumber, spaceState, myTurn, currentPlayer, availableMoves){
     const params = this.spaceParams[spaceNumber];
     const id = "space" + spaceNumber.toString();
+    let onClick;
     let spaceBody;
+
+    if (myTurn && availableMoves.reduce((acc, piece) => acc || piece.space === spaceNumber, false)) {
+      onClick = () => {
+        console.log(spaceNumber);
+        movePiece({ player: currentPlayer, space: spaceNumber });
+      }
+    }
+
     if (spaceState.occupied){
-      spaceBody = <circle className="occupied_ring" cx={params.cx} cy={params.cy} r={this.ringParams.occupied.r} stroke={spaceState.color} strokeWidth={this.ringParams.occupied.strokeWidth} />;
+      spaceBody = <circle onClick={onClick} className="occupied_ring" cx={params.cx} cy={params.cy} r={this.ringParams.occupied.r} stroke={spaceState.color} strokeWidth={this.ringParams.occupied.strokeWidth} />;
     } else {
       spaceBody = <circle className="unoccupied_ring" cx={params.cx} cy={params.cy} r={this.ringParams.unoccupied.r}  stroke={this.ringParams.unoccupied.stroke} strokeWidth={this.ringParams.unoccupied.strokeWidth} />;
     }
@@ -212,7 +223,7 @@ class Board extends Component {
       <path id="path2221" d="m714.03 400h-628.06" stroke="#000" strokeWidth="1px"/>
     </g>
     {/* Render all the spaces */}
-    { Object.keys(this.context.boardState.spaces).map((spaceNum) => this.renderSpace(spaceNum, this.context.boardState.spaces[spaceNum])) }  
+    { Object.keys(this.context.boardState.spaces).map((spaceNum) => this.renderSpace(spaceNum, this.context.boardState.spaces[spaceNum], this.context.myTurn, this.context.currentPlayer, this.context.availableMoves)) }  
   </g>
   <g id="layer2">
     <g id="g925" >
