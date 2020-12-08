@@ -11,7 +11,7 @@ const SocketProvider = (props) => {
       rollResult: 4,
       myTurn: false,
       availableMoves: [],
-      currentPlayer: new Player("Waiting for Connection", PlayerColors.red),
+      currentPlayer: null,
       completedPlayer: new Player("Taylor Swift", PlayerColors.green),
       boardState: {
         spaces: {

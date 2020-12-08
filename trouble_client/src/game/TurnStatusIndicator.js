@@ -10,14 +10,21 @@ class TurnStatusIndicator extends Component {
 
   render() {
     const player = this.context.currentPlayer;
-    const style = {
-      backgroundColor: getPlayerColorLight(player.color),
-      color: getPlayerColorDark(player.color)
+    let classes = "";
+    let styles = {};
+    let text = "Waiting for Connection";
+    if (player !== null){
+      classes = "";
+      styles = {
+        backgroundColor: getPlayerColorLight(player.color),
+        color: getPlayerColorDark(player.color)
+      };
+      text = player.name + "'s turn";
+    } else {
+      classes = "bg-secondary text-white";
     }
-
-    return (
-      <span className="badge px-3 py-2" style={style}>{player.name}'s turn </span>
-    );
+    
+    return <span className={"badge px-3 py-2 " + classes} style={styles}>{text}</span>
   }
 }
 
