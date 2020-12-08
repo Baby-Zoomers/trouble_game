@@ -53,11 +53,14 @@ class Game {
             let pieces = new Array()
             
             for(let i = 0; i < this.piecesPerUser; i++) {
-                let newPiece = new Piece(color, i, Colors[color].homeBase[i],  Colors[color].startPoint)
+                let newPiece = new Piece(color, name, i, Colors[color].homeBase[i],  Colors[color].startPoint, Colors[color].finishLine)
                 pieces.push(newPiece)
+                this.gameBoard.board[newPiece.initPosition] = newPiece
             }
             newUser.pieces = pieces
+            //console.log(newUser.pieces[0].finishLinePosition)
             this.userNumber ++
+            // console.log(this.gameBoard.board)
         } 
         else {
             console.log('Exceed User Limit!')
@@ -91,18 +94,20 @@ class Game {
      * @return {Piece[]} array of available 
      */
     getAvailablePieces = function () {
-        const availablablePieces = this.userList[this.currentUser].pieces.forEach(piece => {
-            this.gameBoard.isValidMove(piece)
+        const availablablePieces = this.userList[this.currentUser].pieces.filter(piece => {
+            return this.gameBoard.isValidMove(piece, this.dice)
+            
         })
-        //return avilablePieces Object
+        //return a list of available pieces
         return availablablePieces
     }
 
     /** move the piece and update turn
-     * @param {Piece} - selected piece object
+     * @param {int} - space containing the piece to move
      */
-    movePiece = function (piece) {
-        this.gameBoard.updateMoves(piece)
+    movePiece = function (space) {
+        //this.gameBoard.updateMoves(piece)
+        console.log("fake move!")
         
         
     }
@@ -112,12 +117,6 @@ class Game {
         console.log(this.currentUser)
         return this.userList[this.currentUser]
     }
-
-
-    
-
-    
-
 
 }
 module.exports.Game = Game

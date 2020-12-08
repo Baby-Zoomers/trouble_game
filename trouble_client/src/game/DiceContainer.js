@@ -14,20 +14,27 @@ class DiceContainer extends Component {
     this.state = {show: false}
   }
 
+  handleShow = () => this.setState({show: true});
+  handleClose = () => this.setState({show: false});
+
+  /** Called when dice are clicked. 
+   * If it is your turn and we have not rolled yet, send dice roll msg to server. */
+  rollDice = () => {
+    console.log("roll dice")
+    sendRollDice();
+    this.handleClose();
+  }
+
   render() {
-
-
-        const handleShow = () => this.setState({show: true});
-        const handleClose = () => this.setState({show: false});
 
         return (
           <div>
-            <Button variant="primary" size="lg" block onClick={handleShow}>
+            <Button variant="primary" size="lg" block onClick={this.handleShow}>
               Roll Dice
             </Button>
 
-            <Modal show={this.state.show} onHide={handleClose} backdrop="static" keyboard={false}>
-              <Modal.Header closebutton>
+            <Modal show={this.state.show} onHide={this.handleClose} backdrop="static" keyboard={false}>
+              <Modal.Header closeButton>
                 <Modal.Title>
                   Role Dice
                 </Modal.Title>
@@ -36,25 +43,15 @@ class DiceContainer extends Component {
                 Roll the dice here!
               </Modal.Body>
               <Modal.Footer>
-                <Button variant="primary" onClick={handleClose}>
-                  Roll
-                  <DiceWindow roll={this.state.diceRoll} handleDiceClick={this.rollDice}></DiceWindow>
-                </Button>
+                <DiceWindow roll={this.state.diceRoll} handleDiceClick={this.rollDice}></DiceWindow>
               </Modal.Footer>
             </Modal>
 
-            <DiceWindow roll={this.state.diceRoll} handleDiceClick={this.rollDice}></DiceWindow>
             {this.props.children}
           </div>
         );
       } 
 
-  /** Called when dice are clicked. 
-   * If it is your turn and we have not rolled yet, send dice roll msg to server. */
-  rollDice = () => {
-    console.log("roll dice")
-    sendRollDice();
-  }
 }
 
 export default DiceContainer;
