@@ -15,7 +15,7 @@ class GameRoom {
 
     async init() {
         await this.addPlayer(this.host.handshake.query.id, this.host);
-        this.host.emit('myTurn', true);
+        this.host.emit('myTurn', {myTurn: true, canRoll: true});
         
         // or maybe some other stuff? idk
         // depends on what gameService needs ig
@@ -59,7 +59,7 @@ class GameRoom {
             // Update game state
             const { board, currentPlayer } = GameService.accessGameState(this.gameId);
             Object.values(this.players).forEach((player) => {
-                player.socket.emit('myTurn', false);
+                player.socket.emit('myTurn', {myTurn: false, canRoll: false});
                 player.socket.emit('newMove', {board});
                 player.socket.emit('currentPlayer', currentPlayer);
             });
@@ -71,7 +71,7 @@ class GameRoom {
                     player.socket.emit('completedPlayer', {completedPlayer: completedPlayer});
                 });
             } else {
-                this.players[currentPlayer.name].socket.emit('myTurn', true);
+                this.players[currentPlayer.name].socket.emit('myTurn', { myTurn: true, canRoll:  true});
             }
 
         });

@@ -29,7 +29,7 @@ class pieceDTO {
  */
 const handleDiceRoll = (gameID) => {
     let currentGame = database.gameList[gameID]
-    let rollResult = currentGame.rollDice()
+    const { rollResult, canRoll } = currentGame.rollDice()
     // socketManager.sendRollResult(rollResult)
     let availablePieces = currentGame.getAvailablePieces()
     var availableMoves = []
@@ -40,6 +40,7 @@ const handleDiceRoll = (gameID) => {
     });
     return {
         rollResult,
+        canRoll,
         availableMoves
     }
 }

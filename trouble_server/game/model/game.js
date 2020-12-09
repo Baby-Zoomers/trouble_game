@@ -88,7 +88,7 @@ class Game {
         this.dice = Math.floor(Math.random() * 6) + 1
         // this.dice = 6
         console.log('User ' + this.currentUser + ' just rolled ' + this.dice)
-        return this.dice  
+        return { rollResult: this.dice, canRoll: this.dice === 6 }
     }
 
     /** get all the avilable piece for the current user

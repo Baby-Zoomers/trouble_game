@@ -39,7 +39,7 @@ class DiceContainer extends Component {
         return (
           <div>
           {this.context.myTurn &&
-            <Button variant="primary" size="lg" block onClick={this.rollDice}>
+            <Button variant="primary" size="lg" block onClick={this.rollDice} disabled={!this.context.canRoll}>
               Roll Dice
             </Button>
           }
