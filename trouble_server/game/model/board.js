@@ -93,6 +93,14 @@ class Board {
         }
     }
 
+    /**
+     * Check if the specified color has completed the game (all pieces are in finish line)
+     * @param {string} color : string of the color to check
+     */
+    checkColorCompletion = function (color) {
+        return this.finishLineLeft[color] === 0;
+    }
+
 }
 
 var newBoard = new Board()
