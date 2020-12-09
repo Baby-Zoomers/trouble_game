@@ -77,3 +77,30 @@ test("Check if isValidMove Work12", () => {
 test("Check if isValidMove Work11", () => {
     expect(gameBoard.updateMoves(1,6)).toEqual(gameBoard.board[47]);
 });
+
+test("Player can move all pieces into finish line", () =>{
+    let testBoard = new Board();
+    let player = Colors['red'];
+    let initialPositions = [17, 16, 15, 14];
+    let finalPosition = [55, 54, 53, 52];
+    let pieces = [];
+
+    // places pieces on spaces leading into finish line
+    for(let i = 0; i < 4; i++) {
+        let newPiece = new Piece('red', player.name, i, player.homeBase[i],  player.startPoint)
+        pieces.push(newPiece);
+
+        testBoard.board[newPiece.position] = newPiece;      // add to board at home
+        testBoard.updateMoves(newPiece.position, 6)         // move to start position
+        testBoard.updateMoves(player.startPoint, 27 - i)    // move so they are queued up in front of finish line
+    }
+
+    // move pieces into finish line
+    for(let i=0; i<4; i++){
+        testBoard.updateMoves(initialPositions[i], 4);      // move into finish line
+        expect(pieces[i].position).toEqual(finalPosition[i]);
+        expect(testBoard.board[finalPosition[i]]).toEqual(pieces[i]);
+    }
+
+    expect(testBoard.checkColorCompletion('red')).toBeTruthy();     // check that player registers as completed
+});
