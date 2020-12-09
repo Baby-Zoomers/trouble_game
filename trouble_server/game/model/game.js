@@ -117,6 +117,18 @@ class Game {
         return this.userList[this.currentUser]
     }
 
+    /** Check each player if they have all four pieces in the finish line
+     * @returns {Player} - return the player that has completed if one has, otherwise return null.
+     */
+    getCompletedPlayer() {
+        for (let i=0; i< this.userNumber; i++){
+            if (this.gameBoard.finishLineLeft[this.userList[i].color] === 0){
+                return user;
+            }
+        }
+        return null
+    }
+
 }
 module.exports.Game = Game
 // const game = new Game(0)

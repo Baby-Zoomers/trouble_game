@@ -102,6 +102,21 @@ const accessGameState = (gameID) => {
 } 
 
 /**
+ * Check for a player completion (game over)
+ * @param {number} gameID - the gameID of current game
+ * @return {Player} - the player that won or null if the game is not over
+ */
+const checkCompletion = (gameID) => {
+    const currentGame = database.gameList[gameID]
+    const completedPlayer = currentGame.getCompletedPlayer()
+    if (completedPlayer){
+        return new playerDTO(completedPlayer.name, completedPlayer.color);
+    }
+    
+    return null;
+} 
+
+/**
  * Handle the game joining event
  * @param {playerDTO} player 
  * @param {number} gameID 
@@ -127,6 +142,7 @@ module.exports = {
     handleDiceRoll: handleDiceRoll,
     handleMovePiece: handleMovePiece,
     accessGameState: accessGameState,
+    checkCompletion: checkCompletion,
     handlejoinGame: handlejoinGame,
     playerDTO: playerDTO,
     pieceDTO: pieceDTO

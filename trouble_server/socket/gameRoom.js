@@ -55,15 +55,24 @@ class GameRoom {
             console.log('asking to move, info provided: ', piece)
 
             GameService.handleMovePiece(this.gameId, piece);
+            
+            // Update game state
             const { board, currentPlayer } = GameService.accessGameState(this.gameId);
-
             Object.values(this.players).forEach((player) => {
                 player.socket.emit('myTurn', false);
                 player.socket.emit('newMove', {board});
                 player.socket.emit('currentPlayer', currentPlayer);
             });
 
-            this.players[currentPlayer.name].socket.emit('myTurn', true);
+            // Check for game over
+            const completedPlayer = GameService.checkCompletion(this.gameId);
+            if (completedPlayer) {
+                Object.values(this.players).forEach((player) => {
+                    player.socket.emit('completedPlayer', {completedPlayer: completedPlayer});
+                });
+            } else {
+                this.players[currentPlayer.name].socket.emit('myTurn', true);
+            }
 
         });
     }
