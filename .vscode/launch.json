@@ -10,9 +10,10 @@
             "request": "launch",
             "runtimeArgs": [
               "--inspect-brk",
-              "${workspaceRoot}/node_modules/jest/bin/jest.js",
+              "${workspaceRoot}/trouble_server/node_modules/jest/bin/jest.js",
               "--runInBand"
             ],
+            "cwd": "${workspaceRoot}/trouble_server",
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",
             "port": 9229

@@ -122,7 +122,8 @@ class Game {
      */
     getCompletedPlayer = function () {
         for (let i=0; i< this.userNumber; i++){
-            if (this.gameBoard.checkColorCompletion(this.userList[i].color)){
+            const user = this.userList[i];
+            if (this.gameBoard.checkColorCompletion(user.color)){
                 return user;
             }
         }
