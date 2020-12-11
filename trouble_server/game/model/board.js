@@ -33,23 +33,23 @@ class Board {
      * @return {boolean} - the validity of the move
      */
     isValidMove = function(piece, steps) {
-        console.log(piece, steps);
+        //console.log(piece, steps);
         //terminated piece
         if (piece.terminated === true) 
             return false
         //piece at homebase and didn't roll a 6
         if (piece.onCircle === false && steps !== 6) 
             return false
-        //check if the piece can enter finish line
-        if (piece.finishlineReady === true && this.finishLineLeft[piece.color] !== steps) 
-            return false
+        // //check if the piece can enter finish line
+        // if (piece.finishlineReady === true && this.finishLineLeft[piece.color] !== steps) 
+        //     return false
         //check if the piece will land on own piece
         if (piece.onCircle === true) {
             let destination = (piece.position + steps) % 28
             if (this.board[destination] !== undefined && this.board[destination].color === piece.color) {
                 return false
             }
-            if (piece.travel + steps > 27) {
+            if (piece.travel + steps > 27 && piece.travel + steps !== 27 + this.finishLineLeft[piece.color]) {
                 return false
             }
         }
@@ -64,13 +64,15 @@ class Board {
     updateMoves = function(space, steps) {
         
         let currentPiece = this.board[space]
+        // console.log("move current piece", currentPiece);
         this.board[space] = undefined
-        console.log("move current piece", currentPiece);
+        
         var destination
         //the piece should be terminated
-        if (currentPiece.finishlineReady === true) {
-            destination = finishLineCoordinate[this.finishLineLeft[currentPiece.color]-1]
+        if (currentPiece.travel + steps == this.finishLineLeft[currentPiece.color] + 27) {
+            destination = finishLineCoordinate[[currentPiece.color]][this.finishLineLeft[currentPiece.color]-1]
             this.board[destination] = currentPiece
+            this.finishLineLeft[currentPiece.color] --
             currentPiece.move(destination, true)
         }
         else {
@@ -91,10 +93,18 @@ class Board {
             this.board[destination] = currentPiece
             currentPiece.move(destination, false)
         }
+        return currentPiece
+    }
+
+    /**
+     * Check if the specified color has completed the game (all pieces are in finish line)
+     * @param {string} color : string of the color to check
+     */
+    checkColorCompletion = function (color) {
+        return this.finishLineLeft[color] === 0;
     }
 
 }
 
-var newBoard = new Board()
 
 module.exports.Board = Board

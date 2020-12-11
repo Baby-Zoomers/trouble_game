@@ -9,6 +9,7 @@ import Player from "../../models/Player";
 const SocketProvider = (props) => {
     const [value, setValue] = useState({
       rollResult: 4,
+      canRoll: false,
       myTurn: false,
       availableMoves: [],
       currentPlayer: new Player("Waiting for Connection", PlayerColors.red),

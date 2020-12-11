@@ -8,12 +8,12 @@ import { socket } from './index';
  * @classdesc listens to events emitted from server
  */
 export const socketEvents = ({ setValue }) => {
-  socket.on('rollResult', ({rollResult, availableMoves}) => {
+  socket.on('rollResult', ({rollResult, canRoll, availableMoves}) => {
     setValue(state => { 
       console.log(availableMoves);
       const boardState = state.boardState;
       availableMoves.forEach(piece => boardState.spaces[piece.space].highlighted = true);
-      return { ...state, rollResult, availableMoves, boardState};
+      return { ...state, rollResult, canRoll, availableMoves, boardState};
     });
   });
 
@@ -23,8 +23,8 @@ export const socketEvents = ({ setValue }) => {
     });
   });
 
-  socket.on('myTurn', (myTurn) => {
-    setValue(state => { return { ...state, myTurn }});
+  socket.on('myTurn', ({ myTurn, canRoll }) => {
+    setValue(state => { return { ...state, myTurn, canRoll }});
   });
 
   socket.on('completedPlayer', ({ completedPlayer }) => {
