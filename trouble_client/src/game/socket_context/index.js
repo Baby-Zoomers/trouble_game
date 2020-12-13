@@ -6,7 +6,7 @@ import SpaceState from "../../models/SpaceState";
 import { PawnColors, PlayerColors } from "../../Colors";
 import Player from "../../models/Player";
 
-const SocketProvider = (props) => {
+const GameContext = (props) => {
     const [value, setValue] = useState({
       rollResult: 4,
       canRoll: false,
@@ -81,13 +81,13 @@ const SocketProvider = (props) => {
       gameOver: false,
     });
 
-useEffect(() => initSockets({ setValue }), []);
-// Note, we are passing setValue ^ to initSockets
-return(
-    <SocketContext.Provider value={ value }>
-      { props.children }
+  useEffect(() => initSockets({ name: props.name, gameId: props.gameId, setValue }), []);
+  // Note, we are passing setValue ^ to initSockets
+  return (
+    <SocketContext.Provider value={value}>
+      { props.children}
     </SocketContext.Provider>
   )
 };
 
-export default SocketProvider;
+export default GameContext;
