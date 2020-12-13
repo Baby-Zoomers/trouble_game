@@ -14,16 +14,9 @@ socket(server);
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, '../trouble_client/build')));
 
-/**
- * Returns the string "hello world"
- * @returns {string} "hello world"
- */
-function get_hello(){
-    return "hello world";
-}
 
 /**
- * Get Hello World Message
+ * Create a new game in the database
  *
  * @name Create Game
  * @path {POST} /api/create/game

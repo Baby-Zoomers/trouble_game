@@ -1,22 +1,16 @@
 const { expect } = require("@jest/globals");
 const supertest = require("supertest");
 const rewire = require("rewire");
+
 const app = rewire("./index");
 const request = supertest(app)
 
 
-describe('get_hello', () => {
-    test('returns hello world', () => {
-        const get_hello = app.__get__('get_hello');     // Use rewire to access private function
-        expect(get_hello()).toEqual('hello world');
-    });
-});
-
-describe('api/hello', () => {
-    test('returns hello world', () => {
-        return request.get("/api/hello").then(res => {
-            expect(res.statusCode).toBe(200);
-            expect(res.body.text).toBe('hello world');
+describe('/api/create/game', () => {
+    test('makes call to create game', () => {
+        return request.post("/api/create/game").then(res => {
+            expect(res.statusCode).toBe(201);
+            expect(res.body.gameId).toBe(0);
         });
     });
 });
