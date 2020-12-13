@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import {
+  BrowserRouter as Router,
+} from 'react-router-dom';
 import './App.css';
-import GameComponent from './game/GameComponent';
+import GameJoiner from './GameJoiner';
+// import GameComponent from './game/GameComponent';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -13,12 +17,13 @@ class App extends Component {
   /** Render the app */
    render() {
     return (
-      <div className="App">
-        <header className="App-header" data-testid="App-header">
-
-          <GameComponent></GameComponent>
-        </header>
-      </div>
+      <Router>
+        <div className="App">
+          <header className="App-header" data-testid="App-header">
+            <GameJoiner/>
+          </header>
+        </div>
+      </Router>
     );
   }
 }

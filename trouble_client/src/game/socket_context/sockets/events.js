@@ -1,19 +1,19 @@
 import Piece from '../../../models/Piece';
 import { updateBoardState } from '../../BoardContainer';
 import Player from '../../../models/Player';
-import { socket } from './index';
+import { handleGameNotFound } from '../../../GameJoiner'
 
 /**
  * 
  * @classdesc listens to events emitted from server
  */
-export const socketEvents = ({ setValue }) => {
-  socket.on('rollResult', ({rollResult, availableMoves}) => {
+export const socketEvents = ({ setValue, socket }) => {
+  socket.on('rollResult', ({rollResult, canRoll, availableMoves}) => {
     setValue(state => { 
       console.log(availableMoves);
       const boardState = state.boardState;
       availableMoves.forEach(piece => boardState.spaces[piece.space].highlighted = true);
-      return { ...state, rollResult, availableMoves, boardState};
+      return { ...state, rollResult, canRoll, availableMoves, boardState};
     });
   });
 
@@ -23,8 +23,8 @@ export const socketEvents = ({ setValue }) => {
     });
   });
 
-  socket.on('myTurn', (myTurn) => {
-    setValue(state => { return { ...state, myTurn }});
+  socket.on('myTurn', ({ myTurn, canRoll }) => {
+    setValue(state => { return { ...state, myTurn, canRoll }});
   });
 
   socket.on('completedPlayer', ({ completedPlayer }) => {
@@ -41,5 +41,10 @@ export const socketEvents = ({ setValue }) => {
 
   socket.on('gameOver', ({gamOver}) => {
     setValue(state => { return { ...state, gamOver }});
+  });
+
+  socket.on('error', ({type, message}) => {
+    console.log("received error: ", message);
+    handleGameNotFound(message);
   });
 };

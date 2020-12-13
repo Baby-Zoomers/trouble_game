@@ -88,7 +88,7 @@ class Game {
         this.dice = Math.floor(Math.random() * 6) + 1
         // this.dice = 6
         console.log('User ' + this.currentUser + ' just rolled ' + this.dice)
-        return this.dice  
+        return { rollResult: this.dice, canRoll: this.dice === 6 }
     }
 
     /** get all the avilable piece for the current user
@@ -115,6 +115,19 @@ class Game {
         this.currentUser = this.currentUser === this.userNumber-1 ?  0 : this.currentUser + 1
         console.log(this.currentUser)
         return this.userList[this.currentUser]
+    }
+
+    /** Check each player if they have all four pieces in the finish line
+     * @returns {Player} - return the player that has completed if one has, otherwise return null.
+     */
+    getCompletedPlayer = function () {
+        for (let i=0; i< this.userNumber; i++){
+            const user = this.userList[i];
+            if (this.gameBoard.checkColorCompletion(user.color)){
+                return user;
+            }
+        }
+        return null
     }
 
 }

@@ -1,23 +1,37 @@
 const game = require('./game')
 let Game = game.Game
 
-var gameList = new Array()
-var playerList = new Array()
-
-
+var gameList = {}
+let gameCount = 0
 
 /**
- * Hardcode a gamelist
+ * Create a new game object
+ * @returns {int} game id of new game
  */
+ const createNewGame = () => {
+     const newGameId = gameCount;
+     gameCount++;
+     const newGame = new Game(newGameId);
+     gameList[newGameId] = newGame;
+     return newGameId;
+ }
 
-const testGame = new Game(0)
-// testGame.addUser('Jordan', 'blue')
-// testGame.addUser('Sam', 'yellow')
-// testGame.addUser('Sim', 'red')
-// testGame.addUser('Yiwei', 'green')
-gameList.push(testGame)
+/**
+ * Removes a game from list
+ * @param {int} game id which is being removed
+ */
+ const closeGame = (gameId) => {
+     delete gameList[gameId];
+ }
+
+ const getGame = (id) =>{ return gameList[id] };
+ 
+ const getPlayer = (id) =>{ return gameList[id] };
+
 module.exports = {
     //property name: function name
-    gameList: gameList,
-    playerList: playerList
+    getGame: getGame,
+    getPlayer: getPlayer,
+    createNewGame: createNewGame,
+    closeGame: closeGame
 }

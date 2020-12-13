@@ -100,8 +100,15 @@ class Board {
             this.board[destination] = currentPiece
             currentPiece.move(destination, false)
         }
-        console.log(this.board[40])
-        return currentPiece
+        return currentPiece;
+    }
+
+    /**
+     * Check if the specified color has completed the game (all pieces are in finish line)
+     * @param {string} color : string of the color to check
+     */
+    checkColorCompletion = function (color) {
+        return this.finishLineLeft[color] === 0;
     }
 
 }
