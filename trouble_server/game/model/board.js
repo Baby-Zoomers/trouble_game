@@ -40,6 +40,12 @@ class Board {
         //piece at homebase and didn't roll a 6
         if (piece.onCircle === false && steps !== 6) 
             return false
+        //when roll a 6, but the start position is occupied by own piece
+        if  (piece.onCircle == false && steps === 6 ) {
+            if (this.board[piece.startPosition] !== undefined && this.board[piece.startPosition].color === piece.color) {
+                return false
+            }
+        }
         // //check if the piece can enter finish line
         // if (piece.finishlineReady === true && this.finishLineLeft[piece.color] !== steps) 
         //     return false
@@ -87,13 +93,14 @@ class Board {
             //knick other piece back to homebase
             if (this.board[destination] !== undefined) {
                 let otherPiece = this.board[destination]
-                this.board[otherPiece.initPosition] = otherPiece
+                
                 otherPiece.move(-1, false)
+                this.board[otherPiece.initPosition] = otherPiece
             }
             this.board[destination] = currentPiece
             currentPiece.move(destination, false)
         }
-        return currentPiece
+        return currentPiece;
     }
 
     /**
