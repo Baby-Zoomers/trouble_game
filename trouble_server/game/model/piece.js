@@ -32,7 +32,7 @@ class Piece {
     move = function (destination, terminated) {
         //send piece back to home base
         if (destination === -1) {
-            this.currentPosition = this.initPosition
+            this.position = this.initPosition
             this.onCircle = false
             this.travel = 0
             console.log('Your piece return to matching home')
@@ -42,9 +42,9 @@ class Piece {
             this.position = destination
         }
         //Check if ready to enter its own finishline
-        if (this.currentPosition === this.startPosition - 1) {
-            this.finishlineReady = true
-        }
+        // if (position === this.startPosition - 1) {
+        //     this.finishlineReady = true
+        // }
         //check if the piece leave the home base
         if (this.onCircle === false && this.position >= 0 && this.position <= 27) {
             this.onCircle = true

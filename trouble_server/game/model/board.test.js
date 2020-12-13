@@ -74,6 +74,42 @@ test("Check if isValidMove Work11", () => {
 test("Check if isValidMove Work12", () => {
     expect(gameBoard.isValidMove(gameBoard.board[1],6)).toBe(true);
 });
-test("Check if isValidMove Work11", () => {
+test("Check if isValidMove Work13", () => {
     expect(gameBoard.updateMoves(1,6)).toEqual(gameBoard.board[47]);
+});
+test("Check if isValidMove Work14", () => {
+    expect(gameBoard.isValidMove(gameBoard.board[29],1)).toBe(false);
+});
+test("Check if isValidMove Work15", () => {
+    expect(gameBoard.isValidMove(gameBoard.board[29],6)).toBe(true);
+});
+test("Check if isValidMove Work16", () => {
+    expect(gameBoard.updateMoves(29,6)).toEqual(gameBoard.board[4]);
+});
+test("Check if isValidMove Work17", () => {
+    expect(gameBoard.isValidMove(gameBoard.board[30],6)).toBe(false);
+});
+test("Check if isValidMove Work18", () => {
+    expect(gameBoard.updateMoves(4,1)).toEqual(gameBoard.board[5]);
+});
+test("Check if isValidMove Work19", () => {
+    expect(gameBoard.isValidMove(gameBoard.board[30],6)).toBe(true);
+});
+test("Check if isValidMove Work20", () => {
+    expect(gameBoard.updateMoves(40,6)).toEqual(gameBoard.board[25]);
+});
+test("Check if isValidMove Work21", () => {
+    expect(gameBoard.updateMoves(25,6)).toEqual(gameBoard.board[3]);
+});
+test("Check if isValidMove Work22", () => {
+    expect(gameBoard.isValidMove(gameBoard.board[30],6)).toBe(true);
+});
+test("Check if isValidMove Work23", () => {
+    expect(gameBoard.updateMoves(3,1)).toEqual(gameBoard.board[4]);
+});
+test("Check if isValidMove Work24", () => {
+    expect(gameBoard.isValidMove(gameBoard.board[30],6)).toBe(true);
+});
+test("Check if isValidMove Work25", () => {
+    expect(gameBoard.updateMoves(30,6)).toEqual(gameBoard.board[4]);
 });
