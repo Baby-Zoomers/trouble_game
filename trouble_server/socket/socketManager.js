@@ -7,30 +7,34 @@ const socket = (app) => {
     const rooms = {}; // game_id: {player_id: {player atts?}}?
 
     io.on('connection', async socket => {
-        const { gameId, id } = socket.handshake.query;
-        console.log('connection was established!', id);
-        let newGameId = gameId;
-        if (gameId == undefined) {
-            newGameId = 0;
-        }
+        const { gameId, name } = socket.handshake.query;
+        console.log('connection was established!', name);
 
         socket.gameid = gameId;
 
         let gameRoom = rooms[gameId];
+        let gameJoined = false;
         if (!rooms[gameId]) {
-            gameRoom = new GameRoom({ io, socket, gameId: newGameId });
-            const gameJoined = await gameRoom.init();
-            rooms[gameId] = gameRoom;
+            console.log('making new game room');
+            gameRoom = new GameRoom({ io, socket, gameId });
+            gameJoined = await gameRoom.init();
+            if (gameJoined) {
+                rooms[gameId] = gameRoom;
+            }
         } else {
-            await rooms[gameId].addPlayer(id, socket);
+            console.log('using existing game room');
+            gameJoined = await rooms[gameId].addPlayer(name, socket);
         }
 
-        socket.on('disconnect', (reason) => {
-            const remainingPlayers = gameRoom.removePlayer(id);
-            if (remainingPlayers == 0) {
-                delete rooms[gameId];
-            }
-        });
+        if (gameJoined) {
+            socket.on('disconnect', (reason) => {
+                const remainingPlayers = gameRoom.removePlayer(name);
+                console.log('socket has disconnected', remainingPlayers);
+                if (remainingPlayers == 0) {
+                    delete rooms[gameId];
+                }
+            });
+        }
     });
 }
 

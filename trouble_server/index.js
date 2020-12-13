@@ -4,6 +4,8 @@ const path = require('path');
 const http = require('http');
 const socket = require('./socket/socketManager');
 
+const GameService = require('./game/gameService');
+
 const app = express();
 const server = new http.Server(app);
 socket(server);
@@ -23,19 +25,19 @@ function get_hello(){
 /**
  * Get Hello World Message
  *
- * @name Hello World
- * @path {GET} /api/hello
- * @response {String} "hello world" message
- * @code {200} if the request is successful
+ * @name Create Game
+ * @path {POST} /api/create/game
+ * @response {Int} Id of game created
+ * @code {201} if the request is successful
  * @code {500} if server dies
  */
-app.get('/api/hello', (req, res) => {
+app.post('/api/create/game', (req, res) => {
 
-  const hello_text = {'text': get_hello()}
+  const id = GameService.handleCreateGame();
+  res.status(201);
+  res.json({gameId: id});
 
-  res.json(hello_text);
-
-  console.log(`Sent hello world`);
+  console.log(`Created game id ` + id.toString());
 });
 
 // The "catchall" handler: for any request that doesn't
