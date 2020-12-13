@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import {
-  BrowserRouter as Router,
   withRouter,
   Switch,
   Route,
-  Link,
   Redirect,
 } from 'react-router-dom';
 import GameComponent from './game/GameComponent';
@@ -28,7 +26,6 @@ class GameJoiner extends Component {
 
     onCreateGame = (e) => {
         e.preventDefault();
-        const { name } = this.state;
         this.setState({message: null});
 
         const options = {
@@ -77,7 +74,7 @@ class GameJoiner extends Component {
         return (
             <Switch>
             <Route path="/game/:gameId">
-                { (this.state.joinGameId != null && this.state.name != "") ?
+                { (this.state.joinGameId != null && this.state.name !== "") ?
                     <GameComponent name={this.state.name} gameId={this.state.joinGameId}/> :
                     <Redirect to="/"/>
                 }
