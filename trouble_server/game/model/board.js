@@ -116,8 +116,6 @@ class Board {
      * @returns {Boolean} - true implies player can leave
      */
     canLeaveHomeOnRoll = function(roll) {
-        console.log({roll, canLeave: this.canLeaveOnRolls}, roll in this.canLeaveOnRolls,
-            this.canLeaveOnRolls.includes(roll));
         return this.canLeaveOnRolls.includes(roll);
     }
 
