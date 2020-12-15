@@ -49,10 +49,11 @@ class GameRoom {
                 player.socket.emit('newMove', {board: board});
                 player.socket.emit('currentPlayer', currentPlayer);
             });
+            this.players[currentPlayer.name].socket.emit('myTurn', { myTurn: true, canRoll:  true});
             return true;
         } catch (err) {
             if (err instanceof GameNotFoundError) {
-                console.log("sending GameNOtFoundError");
+                console.log("sending GameNotFoundError");
                 playerSocket.emit('error', {
                     message: err.message,
                     type: "GameDoesNotExist"
@@ -83,7 +84,7 @@ class GameRoom {
 
     setMoveEvent(socket) {
         socket.on('movePiece', (piece) => {
-            console.log('asking to move, info provided: ', piece)
+            console.log('asking to move, info provided: ', piece);
 
             GameService.handleMovePiece(this.gameId, piece);
             

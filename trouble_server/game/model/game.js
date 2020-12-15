@@ -25,11 +25,13 @@ let Piece = pieces.Piece
 let Board = board.Board
 let User = user.User
 
+
 /**
  * Represents a game
  * @constructor
  */
 class Game {
+
     constructor(gameID) {
         this.gameID = gameID
         this.userNumber = 0
@@ -88,7 +90,7 @@ class Game {
         this.dice = Math.floor(Math.random() * 6) + 1
         // this.dice = 6
         console.log('User ' + this.currentUser + ' just rolled ' + this.dice)
-        return { rollResult: this.dice, canRoll: this.dice === 6 }
+        return { rollResult: this.dice, canRoll: this.canLeaveHomeOnRoll(this.dice) }
     }
 
     /** get all the avilable piece for the current user
@@ -128,6 +130,13 @@ class Game {
             }
         }
         return null
+    }
+
+    /** Check each player if player is able to leave Home given a roll
+     * @returns {Boolean} - true implies player can leave
+     */
+    canLeaveHomeOnRoll = function(roll) {
+        return this.gameBoard.canLeaveHomeOnRoll(roll);
     }
 
 }
