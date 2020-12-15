@@ -18,6 +18,7 @@ const finishLineCoordinate = {
 class Board {
     constructor() {
         this.board = new Array(60)
+        this.canLeaveOnRolls = [1,6]
         this.finishLineLeft = {
             blue: 4,
             yellow: 4,
@@ -37,11 +38,11 @@ class Board {
         //terminated piece
         if (piece.terminated === true) 
             return false
-        //piece at homebase and didn't roll a 6
-        if (piece.onCircle === false && steps !== 6) 
+        //piece at homebase and didn't roll a 6 or 1
+        if (piece.onCircle === false && !(this.canLeaveHomeOnRoll(steps))) 
             return false
-        //when roll a 6, but the start position is occupied by own piece
-        if  (piece.onCircle == false && steps === 6 ) {
+        //when roll a 6 or 1, but the start position is occupied by own piece
+        if  (piece.onCircle == false && this.canLeaveHomeOnRoll(steps) ) {
             if (this.board[piece.startPosition] !== undefined && this.board[piece.startPosition].color === piece.color) {
                 return false
             }
@@ -111,7 +112,13 @@ class Board {
         return this.finishLineLeft[color] === 0;
     }
 
-}
+    /** Check each player if player is able to leave Home given a roll
+     * @returns {Boolean} - true implies player can leave
+     */
+    canLeaveHomeOnRoll = function(roll) {
+        return this.canLeaveOnRolls.includes(roll);
+    }
 
+}
 
 module.exports.Board = Board

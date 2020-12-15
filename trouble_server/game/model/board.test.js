@@ -35,7 +35,7 @@ colors.forEach(color => {
 });
 
 test("Check if isValidMove Work1", () => {
-    expect(gameBoard.isValidMove(gameBoard.board[28],1)).toBe(false);
+    expect(gameBoard.isValidMove(gameBoard.board[28],1)).toBe(true);
 });
 test("Check if isValidMove Work2", () => {
     expect(gameBoard.isValidMove(gameBoard.board[28],6)).toBe(true);
@@ -78,7 +78,7 @@ test("Check if isValidMove Work13", () => {
     expect(gameBoard.updateMoves(1,6)).toEqual(gameBoard.board[47]);
 });
 test("Check if isValidMove Work14", () => {
-    expect(gameBoard.isValidMove(gameBoard.board[29],1)).toBe(false);
+    expect(gameBoard.isValidMove(gameBoard.board[29],1)).toBe(true);
 });
 test("Check if isValidMove Work15", () => {
     expect(gameBoard.isValidMove(gameBoard.board[29],6)).toBe(true);
