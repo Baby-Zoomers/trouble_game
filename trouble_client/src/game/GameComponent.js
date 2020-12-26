@@ -16,7 +16,6 @@ class GameComponent extends Component {
                 <GameContext name={this.props.name} gameId={this.props.gameId} >
                     <TurnContainer className="status-indicator mx-2 my-1"></TurnContainer>
                     <BoardContainer></BoardContainer>
-                    <DiceContainer></DiceContainer>
                     <CompletionContainer></CompletionContainer>
                 </GameContext>
             </div>
