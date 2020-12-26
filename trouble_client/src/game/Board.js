@@ -230,7 +230,9 @@ class Board extends Component {
       <rect id="rect862" x="332.24" y="332.24" width="135.52" height="135.52" transform="rotate(-45.00,400.00, 400.00)" opacity=".998"/>
       <circle id="path864" cx="400" cy="400" r="60.0" fill="#f2f2f2" opacity=".998"/>
       <g id="dice">
-        <rect opacity="0.998" fill='#f2f2f2' stroke='#cccccc' strokeWidth='1.77103' id="diceBorder" width="48.228966" height="48.22897" x="375.8855" y="375.8855" />
+        <rect stroke={this.ringParams.highlight.stroke} strokeWidth={this.ringParams.highlight.strokeWidth} id="diceHighlight" width="54" height="54" x="373" y="373"/>
+        
+        <rect opacity="0.998" fill='#f2f2f2' stroke='#cccccc' strokeWidth='1.77103' id="diceBorder" width="48.228966" height="48.22897" x="375.8855" y="375.8855"/>
         {this.renderDiceDots()}
       </g>
     </g>
