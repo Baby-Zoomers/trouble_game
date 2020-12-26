@@ -184,7 +184,7 @@ class Board extends Component {
       <rect id="rect862" x="332.24" y="332.24" width="135.52" height="135.52" transform="rotate(-45.00,400.00, 400.00)" opacity=".998"/>
       <circle id="path864" cx="400" cy="400" r="60.0" fill="#f2f2f2" opacity=".998"/>
       
-      <DiceContainer />
+      <DiceContainer cx="400" cy="400" />
     </g>
   </g>
 </svg>

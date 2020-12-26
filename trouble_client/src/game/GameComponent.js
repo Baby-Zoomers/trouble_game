@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import BoardContainer from './BoardContainer';
 import CompletionContainer from './CompletionContainer';
-import DiceContainer from './DiceContainer';
 import GameContext from './socket_context';
 import TurnContainer from './TurnContainer';
 import './Game.css';
