@@ -19,6 +19,31 @@ class InfoboxContainer extends Component {
     movePiece(null);
   }
 
+  /**
+   * Determines the message to diplay in the infobox
+   * If other player's turn -> Waiting for $player to make a move
+   * If my turn && waiting for roll -> click dice to roll
+   * If my turn && waiting for move -> click piece to move / no moves available
+   * If gameover -> $player won
+   */
+    getMessage = () => {
+        if (this.context.completedPlayer !== null) {
+            return `${this.context.completedPlayer.name} won!`;
+        } else if (this.context.myTurn) {
+            if (this.context.availableMoves.length !== 0) {
+                return `Click a piece to move it`;
+            } else if (this.context.canRoll){
+                return `Click the dice to roll`;
+            } else {
+                return `No moves available`;
+            } 
+        } else if(this.context.currentPlayer !== null) {     // Not my turn
+            return `Waiting for ${this.context.currentPlayer.name} to move`;
+        } else {
+            return ``;
+        }
+    }
+
     render() {
         const styles = {
             width: "800px",
@@ -29,8 +54,10 @@ class InfoboxContainer extends Component {
             marginTop: "10px"
         }
         return <div style={styles}>
-            <Infobox msg="No Moves Available" width="250px"/>
-            <Button variant="primary" style={btnStyles}>End Turn</Button>
+            <Infobox msg={this.getMessage()} width="250px"/>
+            { this.context.myTurn && !this.context.canRoll && this.context.availableMoves.length === 0 && 
+            <Button variant="primary" style={btnStyles} onClick={this.endTurn}>End Turn</Button>
+            }
         </div>;
     } 
 
