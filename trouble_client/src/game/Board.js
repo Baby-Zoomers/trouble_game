@@ -3,6 +3,7 @@ import SocketContext from './socket_context/context';
 import { movePiece } from './socket_context/sockets/emit'
 import DiceContainer from './DiceContainer';
 import { TroubleColors } from '../Colors';
+import InfoboxContainer from './InfoboxContainer';
  
 class Board extends Component {
   static contextType = SocketContext;
