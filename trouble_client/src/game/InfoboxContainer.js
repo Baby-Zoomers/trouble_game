@@ -50,7 +50,7 @@ class InfoboxContainer extends Component {
             top: "250px"
         }
         return <div style={styles}>
-            <Infobox msg={this.getMessage()} width="250px" endTurnHandler={this.endTurn} showBtn={this.context.myTurn && !this.context.canRoll && this.context.availableMoves.length === 0}/>
+            <Infobox msg={this.getMessage()} width="250px" endTurnCallback={this.endTurn} showBtn={this.context.myTurn && !this.context.canRoll && this.context.availableMoves.length === 0}/>
         </div>;
     } 
 

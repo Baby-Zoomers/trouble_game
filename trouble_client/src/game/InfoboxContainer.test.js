@@ -1,21 +1,11 @@
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
+
+jest.mock('./socket_context/sockets/emit');
+
 import SocketContext from './socket_context/context';
-
-jest.mock("react-bootstrap/esm/Button")
-jest.mock("./Infobox", () => {
-    return {
-      __esModule: true,
-      default: ({msg, showBtn}) => {
-        return <div>
-            <p>{msg}</p>
-            {showBtn && <div>End Turn</div>}
-        </div>;
-      },
-    };
-  });
-
 import InfoboxContainer from './InfoboxContainer'
 import { PlayerColors } from '../Colors';
+import { movePiece } from './socket_context/sockets/emit';
 
 test('Shows waiting for player msg on other player\'s turn', () => {
   const dummyContext = {
@@ -106,4 +96,23 @@ test('Shows no moves available msg & button if there are no moves', () => {
     expect(moveTxt).toBeTruthy();
     expect(moveTxt).toHaveTextContent(/no moves available/i);
     expect(queryByText('End Turn', {exact: false})).toBeTruthy();
+  });
+
+test('movPiece called when button is clicked', () => {
+    const dummyContext = {
+      currentPlayer: {name: 'User 1', color: PlayerColors.red},
+      completedPlayer: null,
+      myTurn: true,
+      canRoll: false,
+      availableMoves: []
+    };
+    const { queryByText } = render(
+    <SocketContext.Provider value={dummyContext}>
+      <InfoboxContainer />
+    </SocketContext.Provider>
+    );
+    const btn = queryByText('End Turn', {exact: false})
+    fireEvent.click(btn)
+    expect(movePiece).toHaveBeenCalledTimes(1)
+    expect(movePiece).toHaveBeenCalledWith(null)
   });
