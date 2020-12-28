@@ -3,7 +3,6 @@ import { movePiece } from './socket_context/sockets/emit';
 
 import SocketContext from './socket_context/context';
 import Infobox from './Infobox';
-import Button from 'react-bootstrap/esm/Button';
 
 
 /** Logic for displaying an info box to the user. 
@@ -50,14 +49,8 @@ class InfoboxContainer extends Component {
             position: "absolute",
             top: "250px"
         }
-        const btnStyles = {
-            marginTop: "10px"
-        }
         return <div style={styles}>
-            <Infobox msg={this.getMessage()} width="250px"/>
-            { this.context.myTurn && !this.context.canRoll && this.context.availableMoves.length === 0 && 
-            <Button variant="primary" style={btnStyles} onClick={this.endTurn}>End Turn</Button>
-            }
+            <Infobox msg={this.getMessage()} width="250px" endTurnHandler={this.endTurn} showBtn={this.context.myTurn && !this.context.canRoll && this.context.availableMoves.length === 0}/>
         </div>;
     } 
 
