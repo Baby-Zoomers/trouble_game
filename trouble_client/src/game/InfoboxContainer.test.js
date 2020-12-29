@@ -1,11 +1,10 @@
 import { render, fireEvent } from '@testing-library/react';
-
-jest.mock('./socket_context/sockets/emit');
-
 import SocketContext from './socket_context/context';
 import InfoboxContainer from './InfoboxContainer'
 import { PlayerColors } from '../Colors';
 import { movePiece } from './socket_context/sockets/emit';
+
+jest.mock('./socket_context/sockets/emit');
 
 test('Shows waiting for player msg on other player\'s turn', () => {
   const dummyContext = {
