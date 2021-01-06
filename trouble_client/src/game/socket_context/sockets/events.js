@@ -36,7 +36,8 @@ export const socketEvents = ({ setValue, socket }) => {
     console.log(newMoveMsg);
     const board = Object.values(newMoveMsg.board).map(pieceDTO => Piece.fromDTO(pieceDTO));
     const boardState = updateBoardState(board);
-    setValue(state => { return { ...state, boardState }});
+    const availableMoves = [];
+    setValue(state => { return { ...state, boardState, availableMoves }});
   });
 
   socket.on('gameOver', ({gamOver}) => {

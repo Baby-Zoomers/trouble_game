@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import BoardContainer from './BoardContainer';
 import CompletionContainer from './CompletionContainer';
-import DiceContainer from './DiceContainer';
 import GameContext from './socket_context';
 import TurnContainer from './TurnContainer';
 import './Game.css';
+import InfoboxContainer from './InfoboxContainer';
 
 
 /** Encapsulating component for the Game View  */
@@ -15,8 +15,8 @@ class GameComponent extends Component {
             <div className="game-container my-4">
                 <GameContext name={this.props.name} gameId={this.props.gameId} >
                     <TurnContainer className="status-indicator mx-2 my-1"></TurnContainer>
+                    <InfoboxContainer></InfoboxContainer>
                     <BoardContainer></BoardContainer>
-                    <DiceContainer></DiceContainer>
                     <CompletionContainer></CompletionContainer>
                 </GameContext>
             </div>
